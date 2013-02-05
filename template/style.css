@@ -1299,6 +1299,16 @@ privacy ul li {
 
 
 
+/*--------------- TEXT BOLDING ----------------*/
+
+.strong {
+	font-weight:bold;
+	}
+
+/* text bolding end */
+
+
+
 /*--------------- FOOTER ----------------*/
 
 #footer_wrap { /* footer position / sticky footer */

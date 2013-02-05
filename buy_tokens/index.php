@@ -14,11 +14,14 @@ $resource_path = "../";
 $title = "Buy Tokens";
 $meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
 
+
+//Display and Create the buy tokens
 $contentContainer = array(
     array(
         "title" => $title,
-        "content" => '<div class="buy_tokens">Choose your package by clicking on the button. Please take note that your payment is processed using Paypal. You will also receive a notification e-mail from CoinCod on this transaction.
-			</div>'.$tpl->fetch($template_path.'buy_token.tpl'),
+        "content" => '<div class="buy_tokens">
+						Choose your package by clicking on the button. Please take note that your payment is processed using Paypal. You will also receive a notification e-mail from CoinCod on this transaction.
+					</div>'.$tpl->fetch($template_path.'buy_token.tpl'),
 		"bottom_image" =>'<img class="bottom" src="../template/template_image/bottom/buy_tokens.png" alt="tokens shopping">'
     )
 );

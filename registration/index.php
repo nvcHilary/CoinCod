@@ -18,7 +18,9 @@ $contentContainer = array(
     array(
         "title" => $title,
         "content" => $tpl->fetch($template_path.'register.tpl'),
-		"bottom_image" =>'<div class="location"><img src="../template/template_image/bottom/location.png" alt="pointer"></div>'
+		"bottom_image" =>'<div class="location">
+							<img src="../template/template_image/bottom/location.png" alt="pointer">
+						</div>'
     )
 );
 

@@ -39,14 +39,14 @@
 		$fromreply = "contact@nexvend.com";
 		$subjectreply = "Thank You Feedback";
 		$messagereply ='<html>
-						<body>
-						Dear ' . $names . ',
-						<br/><br/>
-						CoinCod will like to inform you that we have received your feedback! Here at CoinCod, we value all of our customers thus we evaluate every customers feedback seriously. Therefore, it might take some time for us to process all the feedbacks we received. We will get back to you soon. Thank you for your patience.
-						<br/><br/>
-						Best Regards,<br/>
-						CoinCod Management Team
-						</body>
+							<body>
+								Dear ' . $names . ',
+								<br/><br/>
+								CoinCod will like to inform you that we have received your feedback! Here at CoinCod, we value all of our customers thus we evaluate every customers feedback seriously. Therefore, it might take some time for us to process all the feedbacks we received. We will get back to you soon. Thank you for your patience.
+								<br/><br/>
+								Best Regards,<br/>
+								CoinCod Management Team
+							</body>
 						</html>';
 		$headerreply = "From: $fromreply\r\n";
 		$headerreply .= "Content-type: text/html\r\n";

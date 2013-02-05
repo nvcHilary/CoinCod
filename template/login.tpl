@@ -65,19 +65,18 @@ if ((isset($_SESSION['user_id'])) && (isset($_SESSION['email']))) {
 											
 		echo '
 		<div id="after_log_in">
-		<div class="user_name">
-		<img src="'.$grav_url.'" alt="" />
-			<a href="'.$this->resource_path.'user_profile/?id=' . $userid . '">' . $user_data['username'] . '
-			</a>
-		</div>
+			<div class="user_name">
+				<img src="'.$grav_url.'" alt="" />
+					<a href="'.$this->resource_path.'user_profile/?id=' . $userid . '">' . $user_data['username'] . '</a>
+			</div>
 			
-		<div id="logout">
-			<a href="'.$this->resource_path.'logout">Log Out</a>
-					
-		</div>
-		<div class="token_left">
-			<img src="'.$this->template_path.'template_image/header/token_left.png" border="0" width="30%"> '.$token.'
-		</div>
+			<div id="logout">
+				<a href="'.$this->resource_path.'logout">Log Out</a>
+			</div>
+			
+			<div class="token_left">
+				<img src="'.$this->template_path.'template_image/header/token_left.png" border="0" width="30%"> '.$token.'
+			</div>
 		</div>';
 	}
 } else {
@@ -112,28 +111,28 @@ if ((isset($_SESSION['user_id'])) && (isset($_SESSION['email']))) {
 ?>
 
 <form action="" enctype="multipart/form-data" name="myForm" id="myForm" method="post">
-<table cellspacing="0">
-	<tbody>
-		<tr>
-			<td>
-				<input type="text" class="inputtext" name="email" id="email" placeholder="Email" tabindex="1" required="true"/>
-			</td>
-			<td>
-				<input type="password" class="inputtext" name="password" id="password" placeholder="Password" tabindex="2" required="true">
-			</td>
-			<td>
-				<button class="form_button" name="btnSubmit" type="submit">LOGIN</button>
-			</td>
-		</tr>
-		<tr>
-			<td class="login_label_field">
-				<a href="<?php echo $this->resource_path; ?>forgot_password">Forgot Password?</a>
-			</td>
-			<td class="login_label_field">
-				<a href="<?php echo $this->resource_path; ?>registration">Sign Up</a>
-			</td>
-		</tr>                   
-	</tbody>
-</table>
+	<table cellspacing="0">
+		<tbody>
+			<tr>
+				<td>
+					<input type="text" class="inputtext" name="email" id="email" placeholder="Email" tabindex="1" required="true"/>
+				</td>
+				<td>
+					<input type="password" class="inputtext" name="password" id="password" placeholder="Password" tabindex="2" required="true">
+				</td>
+				<td>
+					<button class="form_button" name="btnSubmit" type="submit">LOGIN</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="login_label_field">
+					<a href="<?php echo $this->resource_path; ?>forgot_password">Forgot Password?</a>
+				</td>
+				<td class="login_label_field">
+					<a href="<?php echo $this->resource_path; ?>registration">Sign Up</a>
+				</td>
+			</tr>                   
+		</tbody>
+	</table>
 </form>	
 <?php } ?>

@@ -14,6 +14,7 @@ $resource_path = "../";
 $title = "Careers";
 $meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
 
+//Display the career vacancy information
 $contentContainer = array(
     array(
         "title" => $title,

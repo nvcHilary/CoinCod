@@ -18,60 +18,83 @@ $contentContainer = array(
     array(
         "title" => $title,
         "content" => '<div id="feedback">
-				<ul>
-					<div class="column_first">
-						<p>Feel free to email us at <a href="mailto:support@coincod.com">support@coincod.com</a></p>
-						<form accept-charset="UTF-8" action="feedback_func.php" class="edit_user" id="edit_user_1809494" method="post">
-						<div style="margin:0;padding:0;display:inline"><input name="_method" value="put" type="hidden"></div>
+						<ul>
+						<!--Feedback Form-->
+						<div class="column_first">
+							<p>Feel free to email us at 
+								<a href="mailto:support@coincod.com">support@coincod.com</a>
+							</p>
+								<form accept-charset="UTF-8" action="feedback_func.php" class="edit_user" id="edit_user_1809494" method="post">
+						<div style="margin:0;padding:0;display:inline">
+							<input name="_method" value="put" type="hidden">
+						</div>
 
-							<dl class="form">
-								<dt><label for="form_name">Name</label></dt>
-								<dd><input id="form_name" name="form_name" required="true" value="" type="text"></dd>
-							</dl>
+						<dl class="form">
+							<dt>
+								<label for="form_name">Name</label>
+							</dt>
+							<dd>
+								<input id="form_name" name="form_name" required="true" value="" type="text">
+							</dd>
+						</dl>
 
-							<dl class="form">
-								<dt><label for="form_email">Email</label></dt>
-								<dd><input id="form_email" name="form_email" required="true" value="" type="text"></dd>
-							</dl>
+						<dl class="form">
+							<dt>
+								<label for="form_email">Email</label>
+							</dt>
+							<dd>
+								<input id="form_email" name="form_email" required="true" value="" type="text">
+							</dd>
+						</dl>
 
-							<dl class="form">
-								<dt><label for="form_subject">Subject</label></dt>
-								<dd><input id="form_subject" name="form_subject" required="true" type="text"></dd>
-							</dl>
+						<dl class="form">
+							<dt>
+								<label for="form_subject">Subject</label>
+							</dt>
+							<dd>
+								<input id="form_subject" name="form_subject" required="true" type="text">
+							</dd>
+						</dl>
 
-							<input name="form[last_repo]" value="" type="hidden">
-							<input name="form[last_repo_at]" value="" type="hidden">
+						<input name="form[last_repo]" value="" type="hidden">
+						<input name="form[last_repo_at]" value="" type="hidden">
 
-							<dl class="form">
-								<dt><label for="form_comments">Questions / Comments</label></dt>
-								<dd><textarea id="form_comments" name="form_comments" placeholder="Please write your feedback here. We will reply your feedback as soon as possible." required="true"></textarea></dd>
-							</dl>
+						<dl class="form">
+							<dt>
+								<label for="form_comments">Questions / Comments</label>
+							</dt>
+							<dd>
+								<textarea id="form_comments" name="form_comments" placeholder="Please write your feedback here. We will reply your feedback as soon as possible." required="true"></textarea>
+							</dd>
+						</dl>
 
-							<div class="form-actions">
-								<button type="submit" class="form_button"><span>Submit</span></button>
-							</div>
-						</form>
-					</div>
-				</ul>
+						<div class="form-actions">
+							<button type="submit" class="form_button">
+								<span>Submit</span>
+							</button>
+						</div>
+				</div>
+					</ul>
 
-				<ul>
-					<section class="column_last">
-						<h3>Why is your feedback crucial to CoinCod?</h3>
-						<ul class="checklist">
-							<li>We will able to challenge the status quo together by having a mutual understanding of each other.</li>
-							<li>Pushing boundaries to create more upcoming innovative features</li>
-							<li>Users like you will be able to have full control of your favorites.</li>
-						</ul>
+					<ul>
+					<!--Feedback Description-->
+						<section class="column_last">
+							<h3>Why is your feedback crucial to CoinCod?</h3>
+								<ul class="checklist">
+									<li>We will able to challenge the status quo together by having a mutual understanding of each other.</li>
+									<li>Pushing boundaries to create more upcoming innovative features</li>
+									<li>Users like you will be able to have full control of your favorites.</li>
+								</ul>
 	  
-						<h3>Reporting a security vulnerability?</h3>
-						Please send to our email at
-						<a href="mailto:security@coincod.com">security@coincod.com</a>
-						If you have any special request <strong>just shoot CoinCod an email</strong>, we are always available.
+							<h3>Reporting a security vulnerability?</h3>
+								Please send to our email at
+								<a href="mailto:security@coincod.com">security@coincod.com</a>
+								If you have any special request <div class="strong">just shoot CoinCod an email</div>, we are always available.
 
-						<img alt="fisheart" class="fisheart" src="../template/template_image/fisheart.png">
-					</section>
-				</ul>
-			</div>',
+							<img alt="fisheart" class="fisheart" src="../template/template_image/fisheart.png">
+						</section>
+					</ul>
+				</div>',
 		"bottom_image" =>''
     )
 );

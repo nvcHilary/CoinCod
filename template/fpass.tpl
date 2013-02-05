@@ -14,21 +14,21 @@
 			$fromname = "Customer Service";
 			$subject = "Forgot Password";
 			$messages = '<html>
-					<body>
-					This is your basic account information registered with CoinCod. 
-					<br/><br/>
-					E-mail Address: ' . $emails . ' <br />
-					Password: ' . $recover_password . ' 
-					<br/>
-					Enjoy your awesome first auction experience with Coincod.
-					<br /><br /> 
-					Thank You! 
-					<br /><br />
-					NOTE:If you did not request for this email. Kindly ignore it.
-					<br /><br />
-					Best Regards,
-					CoinCod Management Team
-					</body>
+							<body>
+								This is your basic account information registered with CoinCod. 
+								<br/><br/>
+								E-mail Address: ' . $emails . ' <br />
+								Password: ' . $recover_password . ' 
+								<br/>
+								Enjoy your awesome first auction experience with Coincod.
+								<br /><br /> 
+								Thank You! 
+								<br /><br />
+								NOTE:If you did not request for this email. Kindly ignore it.
+								<br /><br />
+								Best Regards,
+								CoinCod Management Team
+							</body>
 					</html>';
 				// end of message
 			$headers = "From: $fromname <$from>\r\n";
@@ -59,10 +59,15 @@
 	<section class="forgot">
 		<table>
 			<tr>
-				<td>Please enter your email so that we can send you an email for you to reset your password:</td>
+				<td>
+					Please enter your email so that we can send you an email for you to reset your password:
+				</td>
 			</tr>
 			<tr>
-				<td><div class="value">Email</div>
+				<td>
+					<div class="value">
+						Email
+					</div>
 					<input type="text" id="emails" name="emails" class="text"/>
 					<script type="text/javascript">
 						var emails = new LiveValidation('emails');
