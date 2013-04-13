@@ -1256,8 +1256,8 @@ privacy ul li {
 
 #footer_wrap #back-top {
 	position: fixed;
-	bottom: 80px;
-	margin-left: 1150px;
+	bottom: 0px;
+	right: 0px;
 }
 #footer_wrap #back-top a {
 	width: 60px;
