@@ -717,7 +717,7 @@ fieldset { /* each fieldset spacing size */
 	position: absolute;
 	z-index: 1;
 	margin-top: 60px;
-	margin-left: 0px;
+	margin-left: -100px;
 	}
 	
 .read_more:hover { /* read more design on mouseover */
