@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Load the Savant3 class file and create an instance.
 require_once 'Savant3.php';
 
@@ -30,7 +31,12 @@ $tpl->meta_description = $meta_description;
 $tpl->content_container = $contentContainer;
 
 // Display a template using the assigned values.
-$tpl->header = "";
+if(isset($_SESSION['user_id'])) {
+	$tpl->header = $tpl->fetch($template_path.'header.tpl');
+	$tpl->product = $tpl->fetch($template_path.'product.tpl');
+} else {
+	$tpl->header = "";
+	$tpl->product = $tpl->fetch($template_path.'index.tpl');	
+}
 $tpl->footer = $tpl->fetch($template_path.'footer.tpl');
-$tpl->product = $tpl->fetch($template_path.'index.tpl');
 $tpl->display($template_path.'main.tpl');

@@ -1,5 +1,7 @@
 <?php
 	require $this->resource_path.'config.php';
+	require $this->resource_path.'sql_function.php';
+	session_start();
 ?>
 <html>
 <head>
@@ -85,15 +87,56 @@
 						</tbody>
 					</table> 		
 				</nav>  <!--end div menu-->
+		
+				<?php if (isset($_SESSION['user_id']))  {
+					$now = time(); 
+					if($now > $_SESSION['expire']) {
+						session_destroy();
+						echo "<script language='javascript'>";
+						echo "window.location=$PREFIX";
+						echo "alert('Timeout!!!Please login to continue browsing the site');";
+						echo "</script>";
+					} else { 
+						echo '<div id="search"> 
+							<form action="'.$PREFIX.'/search" enctype="multipart/form-data" name="searchForm" id="myForm" method="GET">
+								<input type="text" class="search_input" name="search" placeholder="Enter Search..." value="'.htmlspecialchars($searchTerms).'" />
+							</form>
+						</div>';
+								
+						$_SESSION['start_reset'] = time();
+						$_SESSION['expire'] = $_SESSION['start_reset'] + (30 * 60) ;
+						$userid = $_SESSION['user_id'];
+						$username = get_username($userid);
+							
+						$user=mysql_query("SELECT * FROM user_account WHERE user_id='$userid'");
+						$get=mysql_fetch_array($user);
+						$token=$get["Token"];
+						$gravatar_image=$get["Email"];
+						$default = "$PREFIX/template/template_image/favicon.ico";
+						$size = 40;
 
-				<div id="search"> 
-					<form action="<?php echo $PREFIX; ?>/search" enctype="multipart/form-data" name="searchForm" id="myForm" method="GET">
-						<input type="text" class="search_input" name="search" placeholder="Enter Search..." value="<?php echo isset($searchTerms)?htmlspecialchars($searchTerms):''; ?>" />
-					</form>
-				</div>  <!--end div search-->
-				
-				<a href="<?=$PREFIX?>/login"><button class="form_button" name="btnSubmit" type="submit">Sign In</button></a>
-				
+						$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $gravatar_image ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+												
+						echo '
+							<div id="after_log_in">
+								<div class="user_name">
+									<img src="'.$grav_url.'" alt="" />
+									<a href="'.$PREFIX.'/User_Profile/?id=' . $userid . '">' . $username . '</a>
+								</div>
+					
+								<div class="token_left">
+									Token Left: '.$token.'
+								</div>
+					
+								<div id="logout">
+									<a href="'.$PREFIX.'/logout"><img src="'.$PREFIX.'/template/template_image/header/logout.png" border="0" width="30%" title="Log Out"></a>
+								</div>
+
+							</div>';
+					}
+				} else { 
+					echo '<a href="'.$PREFIX.'/login"><button class="form_button" name="btnSubmit" type="submit">Sign In</button></a>';
+				}	?>
 			</div> <!--end div container-->
 		</div> <!--end div header_content-->
 	</header> <!--end header-->

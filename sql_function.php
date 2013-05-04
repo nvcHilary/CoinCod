@@ -1,6 +1,13 @@
 <?php
 require 'config.php';
 
+function get_username($id) {
+	$get_name=mysql_query("SELECT * FROM user_account WHERE user_id='".$id."'");
+	$get=mysql_fetch_array($get_name);
+	$name=$get["Username"];
+	return $name;
+}
+
 function get_sitestatus() {
 	$getstatus=mysql_query("SELECT * FROM status");
 	$get=mysql_fetch_array($getstatus);

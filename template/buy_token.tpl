@@ -4,48 +4,71 @@
 ?>
 <div class="package_value">
 	<div class="ul">
-		<ul class="token_nav">
-			<h4>Token Packages</h4>
-			<li>
-				<div class="token_value">50 tokens</div>
-			</li>
-			<li>
-				<div class="token_value">100 tokens</div>
-			</li>
-			<li>
-				<div class="token_value">200 tokens</div>
-			</li>
-			<li>
-				<div class="token_value">500 tokens (5% discount)</div>
-			</li>
-			<li>
-				<div class="token_value">1000 tokens (10% discount)</div>
-			</li>
-			<li>
-				<div class="token_value">2500 tokens (20% discount)</div>
-			</li>
-			<li>
-				<div class="token_value">5000 tokens (25% discount)</div>
-			</li>
-		</ul>     
-		<ul class="token_nav">
-			<h4>Paypal (RM)</h4>
-			<?php 
-				$array = array("D83KWGJ6FX9YA"=> 15, "X24J6YZZDUN48"=> 30,"BXDZPNG8VAQCA"=>60,"QBD5BC7F7S5YW"=>"142.50","QRQHHTB6L7AK2"=>270,"VGJA9EG9CZ2QJ"=>600,"AZR4JZBCWDX2L"=>1125);
-				foreach ( $array as $i => $j) {
-					if(isset($_SESSION['user_id'])) {
-						echo '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">';
-					} else {
-						echo '<form action="#" method="post">';
-					}
-						echo '<input type="hidden" name="cmd" value="_s-xclick">
-							<input type="hidden" name="hosted_button_id" value="'.$i.'">        
-							<input type="image" src="http://coincod.com/template/price_button/'.$j.'.png" width="104" height="34" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-							<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-							</form>
-						';
-				} 
-			?>
-		</ul>  	
+	<?php 	
+		$tokens = array( 
+			array( 	"Name" => "50 tokens", 
+					"Discount" => "",
+					"Code" => "D83KWGJ6FX9YA",
+					"Price" => "RM 15.00"
+			),
+			array( 	"Name" => "100 tokens", 
+					"Discount" => "",
+					"Code" => "X24J6YZZDUN48",
+					"Price" => "RM 30.00"
+			),
+			array( 	"Name" => "200 tokens", 
+					"Discount" => "",
+					"Code" => "BXDZPNG8VAQCA",
+					"Price" => "RM 60.00"
+			),
+			array( 	"Name" => "300 tokens", 
+					"Discount" => "",
+					"Code" => "SDTBNLJWTY7RJ",
+					"Price" => "RM 90.00"
+			),
+			array( 	"Name" => "500 tokens", 
+					"Discount" => "(5% discount)",
+					"Code" => "QBD5BC7F7S5YW",
+					"Price" => "RM 142.50"
+			),
+			array( 	"Name" => "1000 tokens", 
+					"Discount" => "(10% discount)",
+					"Code" => "QRQHHTB6L7AK2",
+					"Price" => "RM 270.00"
+			),
+			array( 	"Name" => "2500 tokens", 
+					"Discount" => "(20% discount)",
+					"Code" => "VGJA9EG9CZ2QJ",
+					"Price" => "RM 600.00"
+			),
+			array( 	"Name" => "5000 tokens", 
+					"Discount" => "(25% discount)",
+					"Code" => "AZR4JZBCWDX2L",
+					"Price" => "RM 1125.00"
+			)
+		);
+
+		$i = 1;
+		for ($row = 0; $row < 8; $row++) {
+			if(isset($_SESSION['user_id'])) {
+				echo '<form id="buyForm'.$i.'" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">';
+			} else {
+				echo '<form id="buyForm'.$i.'" action="'.$PREFIX.'/login" method="post">';
+			}
+			echo '<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="'.$tokens[$row]["Code"].'"> 
+				<a href="#"><ul class="token_amount" onclick="buyForm'.$i.'.submit();">';
+				if($row <4) { 
+					echo '<li class="token_value">';
+				} else { 
+					echo '<li class="token_value_discount">'; 
+				}
+				echo $tokens[$row]["Name"].'<div class="discount">'.$tokens[$row]['Discount'].'</div>
+				<div class="price">'.$tokens[$row]["Price"].'</div>
+				</li>
+			</ul></a></form>';
+		$i++;
+		}
+		?>	
 	</div>
 </div>

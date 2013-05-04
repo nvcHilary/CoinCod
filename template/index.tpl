@@ -1,10 +1,10 @@
 <?php
-	require $this->resource_path.'config.php';
-	require $this->resource_path.'sql_function.php';
-		
-if(isset($_POST["btnSubmit"])){
-		if (verifyLogin($_POST["email"],$_POST["password"])) {
-			$user_data = getUserRecords($_POST["email"]);
+	require 'config.php';
+	require 'sql_function.php';
+	session_start();	
+	if(isset($_POST["btnSubmit"])){
+		if (verifyLogin($_POST["email_in"],$_POST["password_in"])) {
+			$user_data = getUserRecords($_POST["email_in"]);
 			if($user_data['activation'] == 0) {
 				$error = "Your account has not been activate. Please go email to activate it now and enjoy the forthcoming experience that CoinCod will bring to you. Thank you.";
 			} else {
@@ -15,13 +15,13 @@ if(isset($_POST["btnSubmit"])){
 				$_SESSION['user_id'] = $user_data['id'];
 		
 				session_register('email'); 
-				$_SESSION['email'] = $_POST['email'];
+				$_SESSION['email'] = $_POST['email_in'];
 				//admin location
 				if($user_data['id']== 1) {
 					header("location: $PREFIX/user_profile/?id=$user_data[id]");
 				} else {
 					header("location:$PREFIX"); 
-				}	
+				}; 
 			}
 		} else {
 			header("location:$PREFIX/login/");
@@ -43,8 +43,8 @@ if(isset($_POST["btnSubmit"])){
 				<aside>
 					<form action="" enctype="multipart/form-data" name="login" id="myForm" method="post">
 						Registered User? Come on, in...
-						<input type="text" placeholder="User ID" />
-						<input type="password" placeholder="Password" />
+						<input type="text" name="email_in" id="email_in" placeholder="User ID" />
+						<input type="password" name="password_in" id="password_in" placeholder="Password" />
 						<input type="submit" name="btnSubmit" value="Log In" />
 						<div class="login_label_field"><a href="<?php echo $this->resource_path; ?>forgot_password">Forgot Password?</a><div>
 					</form>
