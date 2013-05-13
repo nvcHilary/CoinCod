@@ -1,18 +1,22 @@
-<?php
-	require $this->resource_path.'config.php';
-	require $this->resource_path.'sql_function.php';
-?>
 <section class="site_body">
-<?php
-	$highest_bidder = getTopBidder();
-	$totalproduct = getTotalProduct();
+	<?php
+	$userid = $_SESSION['user_id'];
+	$search = "0";
+	if(isset($_GET['search'])) {
+		$search = $_GET['search'];
+	}
+	$bidder = getBidderList(1);
+	for($i=0;$i<1;$i++) {
+		$highest_bidder=$bidder[$i]['username'];
+	}
+	$totalproduct = getTotalProduct($search);
 	if($totalproduct > 0) {
-		$product = getProductList();
+		$product = getProductList(0,$search,0);
 		for($i=0;$i<$totalproduct;$i++) {		
 			$pro_id=$product[$i]["pid"]; 
 			$pro_brand = $product[$i]["brand"];
 			$pro_model = $product[$i]["model"];
-			$pro_mprice = $product[$i]["mprice"];
+///			$pro_mprice = $product[$i]["mprice"];
 			$pro_aprice = $product[$i]["aprice"];
 	//		$pro_category =$product[$i]["category"]; 
 	//		$pro_availability = $product[$i]["availability"];
@@ -51,16 +55,16 @@
 			<ul id="auction_list_ul" class="auction_box">
 				<li>
 					<div class="title">
-						<form id="myForm" name="postlink" action="<?=$PREFIX?>/product/product_description.php" method="post">
+						<form id="myForm" name="postlink" action="<?=mainPageURL()?>/product/product_description.php" method="post">
 							<input type="hidden" name="pid" value='<?=$pro_id?>' />
 							<input name="link"  class="button_title" type="submit" value="<?=$pro_brand.$pro_model?>" />	
 						</form>
 					</div>
 					
 					<div class="image">
-						<form id="myForm" name="postlink" action="<?=$PREFIX?>/product/product_description.php" method="post">
+						<form id="myForm" name="postlink" action="<?=mainPageURL()?>/product/product_description.php" method="post">
 							<input type="hidden" name="pid" value='<?=$pro_id?>' />
-							<input type="image" src="<?=$PREFIX?>/product/product_image/<?=$pro_id?>.jpg" width="210" height="150" input name="link" type="submit" value="<?=$pro_brand.$pro_model?>" />				  	
+							<input type="image" src="<?=mainPageURL()?>/product/product_image/<?=$pro_id?>.jpg" width="210" height="150" input name="link" type="submit" value="<?=$pro_brand.$pro_model?>" />				  	
 						</form>
 					</div>
 					
@@ -76,55 +80,30 @@
 							<?=$auctiontime?>
 						</div>
 						<!--<div id="bid_price_1" class="bid_price">'.$Marketprice.'</div>-->
-						<?php if(!isset($_SESSION['user_id'])) { ?>
-							<form action="<?=$PREFIX?>/login" method="post">
-								<div class="bid_button">
-									<input name="login"  class="button" type="submit" value="LOGIN" />
-								</div>
+							
+						<?php if($auctiontime >0) { ?>
+							<form action="<?=mainPageURL()?>/function/updatetimer.php" method="post">
+						  		<input type="hidden" name="uid" value='<?=$userid?>' />
+							  	<input type="hidden" name="pid" value='<?=$pro_id?>' />
+						 	  	<div class="bid_button">
+									<input name="bid<?=$pro_id?>"  class="button" type="submit" value="<?=$tokenneed?> Token to BID" />
+						      	</div>
 							</form>
-						<?php } else { 
-							$userid = $_SESSION['user_id'];
-							if($userid == 1 && $auctiontime >0) { ?>
-								<form action="<?=$PREFIX?>/admin_site/product_info.php" method="post">
-							  		<input type="hidden" name="uid" value='<?=$userid?>' />
-							  		<input type="hidden" name="pid" value='<?=$pro_id?>' />
-						 	  		<div class="bid_button">
-										<input name="bid<?=$pro_id?>"  class="button" type="submit" value="Edit"/>
-						      		</div>
-								</form>
-							<?php } else if($userid == 1 && $auctiontime <0) { ?>
-								<form action="<?=$PREFIX?>/admin_site/product_info.php" method="post">
-							  		<input type="hidden" name="uid" value='<?=$userid?>' />
-							  		<input type="hidden" name="pid" value='<?=$pro_id?>' />
-						 	  		<div class="bid_button">
-										<input name="bid<?=$pro_id?>"  class="button" type="submit" value="Edit"/>
-										<input name="endbid<?=$pro_id?>" class="button" type="submit" value="End Bid" />
-						      		</div>
-								</form>
-							<?php } else if($userid > 0 && $auctiontime >0) { ?>
-								<form action="<?=$PREFIX?>/Function/updatetimer.php" method="post">
-							  		<input type="hidden" name="uid" value='<?=$userid?>' />
-							  		<input type="hidden" name="pid" value='<?$pro_id?>' />
-						 	  		<div class="bid_button">
-										<input name="bid<?=$pro_id?>"  class="button" type="submit" value="<?=$tokenneed?> Token to BID" />
-						      		</div>
-								</form>
-							<?php } else if($userid > 0 && $auctiontime <0) { ?>
-								<div class="bid_button">
-						      		<input name="endbid<?=$pro_id?>" class="button" type="submit" value="Bid Ended" />
-						        </div>
-							<?php }
-						} ?>
+						<?php } else if($auctiontime <0) { ?>
+							<div class="bid_button">
+					      		<input name="endbid<?=$pro_id?>" class="button" type="submit" value="Bid Ended" />
+					        </div>
+						<?php } ?>
 						
 						<div id="read_more">						
-							<form id="myForm" name="postlink" action="<?=$PREFIX?>/product/product_description.php" method="post">
+							<form id="myForm" name="postlink" action="<?=mainPageURL()?>/product/product_description.php" method="post">
 								<input type="hidden" name="pid" value='<?=$pro_id?>' />
 								<input name="link"  class="read_more" type="submit" value="Read More..." />	
 							</form>
 						</div>
 						
 						<span class="bid_spot">
-							Highest Bidder<?=$highest_bidder?> 
+							Highest Bidder: <?=$highest_bidder?> 
 							<!--This is the spot for you to put the bid function<div>Bid<div>-->
                     	</span>
 						<span id="auto_bidder">

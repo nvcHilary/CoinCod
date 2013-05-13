@@ -1,21 +1,18 @@
 <?php
 session_start();
-include "../config.php";
+require_once "../config.php";
+require_once "../sql_function.php";
+
 if((isset($_POST['pid'])) && (isset($_POST['uid'])))
 {
 	$pid=$_POST['pid'];
 	$uid=$_POST['uid'];
-	//get info from user_account table
-	$getuser=mysql_query("SELECT * FROM user_account WHERE user_id='$uid'");
-	$get=mysql_fetch_array($getuser);
-	$oldtoken=$get["Token"];
-	$username=$get["Username"];
-		$emails=$get["Email"];
-	//get info from product_list table
-	$getproduct=mysql_query("SELECT * FROM product_list WHERE product_id='$pid'");
-	$get=mysql_fetch_array($getproduct);
-	$oldtotalbid=$get["total_bid"];
-	$oldauctionprice=$get["auction_price"];
+	$email = $_SESSION['email'];
+	$user_data = getMemberRecords($email);
+	$oldtoken = $user_data['token'];
+	$product_data = getProductList($pid, 0, 0);
+	$oldtotalbid = $user_data['bid'];
+	$oldauctionprice=$get["aprice"];
 
 	if($oldtotalbid <=200)                                {	$newtoken = $oldtoken - 1;      }
 	if($oldtotalbid > 200 && $oldtotalbid <= 400)         {	$newtoken = $oldtoken - 2;		}
@@ -39,29 +36,17 @@ if((isset($_POST['pid'])) && (isset($_POST['uid'])))
 	if($oldtotalbid > 3800 && $oldtotalbid <= 4000)       {	$newtoken = $oldtoken - 20;		}
 	if($oldtotalbid > 4000)         					  { $newtoken = $oldtoken - 25;		}
 	
-	if($newtoken >= 0)
-	{
-		$updatetoken = "UPDATE user_account SET Token='$newtoken' WHERE user_id='$uid'";
-		$querytoken = mysql_query($updatetoken) or die (mysql_error());
-	
-		//update total bid and auction price
+	if($newtoken >= 0) {
 		$newauctionstart=time();
 		$newauctionend=time()+ 15;
 		$newtotalbid = $oldtotalbid + 1;
-	
 		$newauctionprice = $oldauctionprice + 0.01;
+		
+		$result = bid($uid, $newtoken, $pid, $newauctionprice, $newauctionstart, $newauctionend, $newtotalbid);
 
-		$updatetimer = "UPDATE product_list SET auction_price='$newauctionprice', auction_start='$newauctionstart', auction_end='$newauctionend', total_bid='$newtotalbid' WHERE product_id='$pid'"; 		
-		$querytimer = mysql_query($updatetimer) or die (mysql_error()); 
-	
-		//insert to product listing
-		$insert_product_listing = "INSERT INTO product_log (product_id,user_id,Username,user_email,auction_price,Time)VALUES('$pid','$uid','$username','$emails','$newauctionprice',now())";  		
-		$queryinsert = mysql_query($insert_product_listing) or die (mysql_error()); 
-		header("location:$PREFIX");
-	}
-	else
-	{
-		header("location:$PREFIX/buy_tokens");
+		header("location:".mainPageURL());
+	} else {
+		header("location:".mainPageURL()."/buy_tokens");
 	}
 }
 ?>

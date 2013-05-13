@@ -1,6 +1,7 @@
 <?php
-	require '../config.php';
-	require '../sql_function.php';
+	ob_start();
+	require_once '../config.php';
+	require_once '../sql_function.php';
 ?>
 <div class="status_box">
 	<div class="status_left">

@@ -1,14 +1,32 @@
 ﻿<?php
-	require '../config.php';
-	require '../sql_function.php';
+	ob_start();
+	session_start();
+	require_once '../config.php';
+	require_once '../sql_function.php';
 	
 	if(isset($_POST["btnGet"])){
-		$result = sendpassword($_POST['emails']);	
+		$emails = mysql_real_escape_string($_POST['emails']);
+		
+		$error = NULL;
+		if(empty($emails)){
+			$error .= "<li>Email is required";
+		}
+		if(!filter_var($emails, FILTER_VALIDATE_EMAIL)){
+			$error .= "<li>Invalid Email!";
+		}
+		
+		if(!empty($error)){
+			$echo_error = "<div style='text-align:left;color:#d50000;'><ul>".$error."</ul></div>";
+		}else{
+			if(sendpassword($emails)) {
+				$echo_error = "Your password has been successfully sent to your email.";
+			} else {
+				$echo_error = "<div style='color:#d50000;text-align:left;'>Mailer Error (CS): Failed comment. Please try to resend again!</div>";
+			}
+		}	
+	} 
 ?>
-	<div style="color:red;">
-		<?php echo $result;?>
-	</div>
-<?php } ?>
+<?=$echo_error;?>
 <form action="" enctype="multipart/form-data" name="myForm" id="myForm" method="post">
 	<section class="forgot">
 		<table>
@@ -22,12 +40,7 @@
 					<div class="value">
 						Email
 					</div>
-					<input type="text" id="emails" name="emails" class="text"/>
-					<script type="text/javascript">
-						var emails = new LiveValidation('emails');
-						emails.add(Validate.Presence)
-						emails.add(Validate.Email )
-					</script>
+					<input type="text" id="emails" name="emails" class="text" required/>
 				</td>
 			</tr>
 			<tr>
