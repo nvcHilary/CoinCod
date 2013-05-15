@@ -82,7 +82,7 @@
 	
 	<!-- back2top blockcode -->
 	<section id="back-top">
-		<a href="#top"><span></span>Back To Top</a>
+		<a href="#top">Back To Top</a>
 	</section><!-- end of back2top -->	
 </footer><!--footer_wrap--> 		
 

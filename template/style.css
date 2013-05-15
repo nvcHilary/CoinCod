@@ -349,6 +349,10 @@ h1,h2,h3,h4,h5,h6{
 	margin:0pt auto;
 }
 
+.container a{
+	text-decoration: none;
+	}
+
 h1 { /* the h1 title position */
 	margin-left: 50px;
 	}
@@ -762,7 +766,7 @@ fieldset { /* each fieldset spacing size */
 	-moz-border-radius: 10px;
 	box-shadow: 2px 2px 10px #666666;
 	border-radius: 10px;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
 	color: #fff;
 	border: 2px solid #039503;
@@ -1045,6 +1049,50 @@ fieldset { /* each fieldset spacing size */
 }
 	
 /*---------- Buy_Tokens PAGE END ----------*/
+
+
+
+/*---------- GRAPHICS PAGE START ----------*/
+#graphics {
+	text-align: center;
+	padding-bottom: 50px;
+	margin-left: -100px;
+	margin-top: -50px;
+	width: 1000px;
+	}
+	
+#graphics img {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: 10px solid #ccc;
+	width: 200px;
+	margin-top: 80px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	}
+	
+#graphics a{
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-weight: bold;
+	color: #575857;
+	border: 1px solid #f4e831;
+	background: url(template_image/price_button.png) repeat-x;
+	padding: 5px 10px 5px 10px;
+	text-decoration: none;
+	position: relative;
+	top: 30px;
+	left: -140px;
+	}
+	
+#graphics a:hover { /* button on mouseover */
+	background: url(template_image/price_button_hover.png) repeat-x;
+	}
+	
+#graphics a:active { /*button on click */
+	background: url(template_image/price_button_active.png) repeat-x;
+	}
+/*---------- GRAPHICS PAGE END ----------*/
 
 
 
@@ -1454,7 +1502,7 @@ privacy ul li {
 	}
 
 #after_log_in { /* after log in box container position */
-	margin-top: 40px;
+	margin-top: 20px;
 	}
 	
 #after_log_in .user_name a{ /* username position */
@@ -1513,5 +1561,10 @@ privacy ul li {
 	
 /*---------- REGISTRATION register form PAGE END ----------*/	
                     
+	}
+	
+	
+.ui-accordion .ui-accordion-header {
+	padding-left: 30px;
 	}
 

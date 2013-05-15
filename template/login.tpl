@@ -79,7 +79,7 @@ echo $echo_error; echo $_SESSION['error'];
 			</td>
 		</tr>
         <tr>
-			<td>
+			<td colspan="2">
 				<input name="btnLogin" type="submit" class="form_button" value="Login">
 			</td>
 		</tr>
