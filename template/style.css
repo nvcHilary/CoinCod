@@ -1565,6 +1565,6 @@ privacy ul li {
 	
 	
 .ui-accordion .ui-accordion-header {
-	padding-left: 30px;
+	padding-left: 30px !important;
 	}
 
