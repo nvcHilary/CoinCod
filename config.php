@@ -12,6 +12,7 @@ mysql_select_db($dbname) or die ('Database name is not available!');
 ////////////////////////////////////////////////////////////////////////////
 define('host', $_SERVER['HTTP_HOST']); 
 define('self', $_SERVER['PHP_SELF']);
+define('company', 'NEXVEND SDN BHD');
 
 function mainPageURL(){
 	$pageURL = 'http';

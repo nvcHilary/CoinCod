@@ -45,7 +45,7 @@ if((isset($_POST["btnAdd"])) || (isset($_POST["btnEdit"]))){
 	if(empty($txtUsername)){
 		$error .= '<li>Username is required';
 	}
-	if($action = "add") {
+	if($action == "add") {
 		if((empty($txtPassword)) || (empty($txtRepassword))){
 			$error .= '<li>Password is required';
 		}

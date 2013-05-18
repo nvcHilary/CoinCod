@@ -27,9 +27,11 @@
 									<li>
 										<a href="<?=mainPageURL()?>/how_it_works">How It Works</a>
 									</li>
+									<?php if (isset($_SESSION['user_id']))  { ?>
 									<li>
 										<a href="<?=mainPageURL()?>/buy_tokens">Buy Tokens</a>
 									</li>
+									<?php } ?>
 									<!--<li>
 										<a href="header/winners">Winners</a>			
 									</li>-->					
