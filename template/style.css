@@ -404,6 +404,11 @@ h5 { /* the h5 title design */
 	margin-top: -150px;
 	max-width: 180px;
 	}
+	
+/* Intended for Login Page */
+input { 
+	padding: 4px;
+	}
 
 /*---------- SHARE CONTENT END ----------*/
 
@@ -522,7 +527,7 @@ h5 { /* the h5 title design */
 /* text area size */	
 .registration .text {
 	width : 280px;
-	height: 22px;
+	padding: 4px;
 	}
 	
 .registration #date_birth_year{
@@ -621,7 +626,7 @@ fieldset { /* each fieldset spacing size */
 	
 .forgot .text { /* the text area size and position */
 	width: 350px;
-	height: 22px;
+	padding: 4px;
 	}
 
 .forgot span { /* the alert text position */
@@ -1121,10 +1126,11 @@ fieldset { /* each fieldset spacing size */
 
 .answer ul li { /* adjust the payment type on the answers */
 	margin-top: -10px;
-	}
+	}	
 	
-
-
+.ui-accordion .ui-accordion-header {
+	padding-left: 30px !important;
+	}
 
 /*---------- FAQ PAGE END ----------*/
 
@@ -1562,9 +1568,3 @@ privacy ul li {
 /*---------- REGISTRATION register form PAGE END ----------*/	
                     
 	}
-	
-	
-.ui-accordion .ui-accordion-header {
-	padding-left: 30px !important;
-	}
-
