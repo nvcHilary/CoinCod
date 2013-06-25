@@ -6,17 +6,17 @@ require_once 'libs/Savant3.php';
 $tpl = new Savant3();
 
 // add a series of template directories
-$tpl->addPath('template', './template');
+$tpl->addPath('template', '../template');
 
 //Set Values
-$resource_path = "./";
-$title = "CoinCod";
+$resource_path = "../";
+$title = "About Us";
 $meta_description = "Welcome to CoinCod - a unique auction system built to draw everyone closer to their dream products.";
 $contentContainer = array(
     array(
-        "title" => "",
-        "content" => "",
-		"bottom_image" =>""
+        "title" => $title,
+        "content" => $tpl->fetch('about_us.tpl'),
+		"bottom_image" =>''
     )
 );
 
