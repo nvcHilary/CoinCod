@@ -45,11 +45,20 @@
 			for ( var i in Timer ) {
 				eta = Timer[i];
 				//eta = "00:" + LeadingZero(Timer[i]);
-				document.getElementById("bid_timer_" + i).innerHTML = ( (eta <= 0) ? 0 : eta );
+				document.getElementById("bid_timer_" + i).innerHTML = ( (eta <= 0) ? 0 : secondsToString(eta) );
 				Timer[i] -= 1;
 			}
 		}
 
+		function secondsToString(seconds){
+			//var numdays = Math.floor(seconds / 86400);
+			var numhours = Math.floor((seconds % 86400) / 3600);
+			var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+			var numseconds = ((seconds % 86400) % 3600) % 60;
+			
+			return LeadingZero(numhours) + ":" + LeadingZero(numminutes) + ":" + LeadingZero(numseconds);
+		}
+		
 		function LeadingZero(Time) {  
 			return (Time < 10) ? "0" + Time : + Time;  
 		}

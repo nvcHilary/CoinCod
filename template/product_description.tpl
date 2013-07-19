@@ -138,4 +138,33 @@ for($i=0;$i<1;$i++) {
 			</tr>
 		</table>
 	</div>
+	<div id='fb-root'></div>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    <p><a onclick='postToFeed(); return false;'><img src="<?=mainPageURL()?>/template/template_image/facebooksharebutton.png"></a></p>
+    <p id='msg'></p>
+
+    <script> 
+      FB.init({appId: "551447234899045", status: true, cookie: true});
+
+      function postToFeed() {
+
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          redirect_uri: '<?=mainPageURL()?>',
+          link: '<?=mainPageURL()?>/product/product_description.php',
+          picture: '<?=mainPageURL()?>/product/product_image/<?=$productId?>.jpg',
+          name: '<?=$product_brand." ".$product_model?> ',
+          caption: 'Reference Documentation',
+          description: '<?=$product_description?>'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+
+    </script>
 <? } ?>

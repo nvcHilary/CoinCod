@@ -86,6 +86,36 @@ function getProductList($id, $search, $limit) {
 	return $records;
 }
 
+function getProductData($id, $search, $limit) {
+	if($id == 0 ) { $rule_id = ""; } 
+	else { $rule_id = " WHERE product_id='".$id."'"; }
+	
+	if($search == "0" ) { $rule_search = ""; } 
+	else { $rule_search = " WHERE Brand LIKE '%".$search."%' or Model LIKE '%".$search."%'"; }
+	
+	if($limit == 0 ) { $rule = ""; } 
+	else { $rule = "LIMIT ".$limit; }
+	
+	$sql = mysql_query("SELECT * FROM product_list 
+						INNER JOIN product_category ON product_list.Category = product_category.category_id
+						".$rule_id.$rule_search.$rule)or die ("Unable to run query:".mysql_error());
+
+	$rows = mysql_fetch_array($sql);
+	$records["pid"] = $rows["product_id"];
+	$records["brand"] = $rows["Brand"];
+	$records["model"] = $rows["Model"];
+	$records["mprice"] = $rows["market_price"];
+	$records["aprice"] = $rows["auction_price"];
+	$records["category"] = $rows["Category"];
+	$records["availablity"] = $rows["Availability"];
+	$records["description"] = $rows["Description"];
+	$records["bid"] = $rows["total_bid"];
+	$records["astart"] = $rows["auction_start"];
+	$records["aend"] = $rows["auction_end"];
+	    
+	return $records;
+}
+
 function getBidderList($limit) {
 	if($limit == 0 ) { $rule = ""; } 
 	else { $rule = "LIMIT ".$limit; }
@@ -550,7 +580,7 @@ function bid($uid, $token, $pid, $aprice, $astart, $aend, $bid) {
 	if($updateToken) {
 		$updateProduct = mysql_query("UPDATE product_list SET auction_price='".$aprice."', auction_start='".$astart."', auction_end='".$aend."', total_bid='".$bid."' WHERE product_id='".$pid."'") or die ("Unable to run query:".mysql_error());	
 		if($updateProduct) {
-			$insertLog = mysql_query("INSERT INTO product_log (product_id,user_id,auction_price,log_date)VALUES('".$pid."','".$uid."','".$newauctionprice."',now())")or die ("Unable to run query:".mysql_error());	
+			$insertLog = mysql_query("INSERT INTO product_log (product_id,user_id,auction_price,log_date)VALUES('".$pid."','".$uid."','".$aprice."',now())")or die ("Unable to run query:".mysql_error());	
 			$result = "update done";
 		} else {
 			$result = "Failed to bid";
