@@ -307,7 +307,8 @@ h1,h2,h3,h4,h5,h6{
 	
 .user_name img { /* "welcome back" & "token left" image position */
 	margin-top: 10px;
-	width: 40px;
+	min-width: 40px;
+	min-height: 40px;
 	}
 
 #logout {
@@ -1512,12 +1513,20 @@ privacy ul li {
 	}
 	
 #after_log_in .user_name a{ /* username position */
-	margin-left: 20px;
+	margin-left: 45px;
 	margin-top:-10px;
+	}
+
+#after_log_in .token_left { /*token left position */
+	margin-top:10px;
 	}
 	
 .user_name img { /* "welcome back" & "token left" image position */
 	margin-top: -10px;
+	min-width:40px;
+	min-height: 40px;
+	background: #ff3;
+	position: absolute;
 	}
 
 /* ---------- AFTER LOGIN @ HEADER END ---------- */
