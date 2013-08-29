@@ -140,7 +140,7 @@ for($i=0;$i<1;$i++) {
 	</div>
 	<div id='fb-root'></div>
     <script src='http://connect.facebook.net/en_US/all.js'></script>
-    <p><a onclick='postToFeed(); return false;'><img src="<?=mainPageURL()?>/template/template_image/facebooksharebutton.png"></a></p>
+    <p id="fb"><a onclick='postToFeed(); return false;'><img src="<?=mainPageURL()?>/template/template_image/facebooksharebutton.png"></a></p>
     <p id='msg'></p>
 
     <script> 
