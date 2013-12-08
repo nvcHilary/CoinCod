@@ -111,9 +111,6 @@
 							Highest Bidder: <?=$highest_bidder?> 
 							<!--This is the spot for you to put the bid function<div>Bid<div>-->
                     	</span>
-						<span id="auto_bidder">
-							Auto Bidder</br>
-						</span>	
 					</div>
 				</li>
 			</ul>
