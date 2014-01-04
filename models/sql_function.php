@@ -842,6 +842,10 @@ function getProducts($data) {
 	$records = array();
 	$sql = "SELECT id, brand, model, auction_price, availability, total_bid, time_end FROM " . e07 ;
 	
+	if(isset($data['search'])) {
+		$sql .= " WHERE brand LIKE '%" . $data['search'] . "%' OR model LIKE '%" . $data['search'] . "%'";
+	}
+	
 	$sort_data = array(
 		'id',
 	);	
