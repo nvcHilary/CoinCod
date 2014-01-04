@@ -1,0 +1,21 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^admin/([A-Za-z0-9-_]+)/page(.*)/(.*)/(.*)\.(html|htm)$ admin/index.php?opt=$1&page=$2&sort=$3&order=$4 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/tokens(.*)\.(html|htm)$ admin/index.php?opt=$1&tokens_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/graphics(.*)\.(html|htm)$ admin/index.php?opt=$1&graphics_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/faq(.*)\.(html|htm)$ admin/index.php?opt=$1&faq_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/information(.*)\.(html|htm)$ admin/index.php?opt=$1&information_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/product(.*)\.(html|htm)$ admin/index.php?opt=$1&product_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/category(.*)\.(html|htm)$ admin/index.php?opt=$1&category_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/page([0-9]+)\.(html|htm)$ admin/index.php?opt=$1&page=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/customer(.*)\.(html|htm)$ admin/index.php?opt=$1&customer_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/user(.*)\.(html|htm)$ admin/index.php?opt=$1&user_id=$2 [L]
+RewriteRule ^admin/([A-Za-z0-9-_]+)/group(.*)\.(html|htm)$ admin/index.php?opt=$1&group_id=$2 [L]
+RewriteRule ^admin/([a-zA-Z0-9].+)\.(html|htm)$ admin/index.php?opt=$1 [L]
+
+RewriteRule ^([A-Za-z0-9-]+)/(.*)/(.*)\.(html|htm)$ index.php?opt=$1&email=$2&code=$3 [L]
+RewriteRule ^product(.*)-(.*)-(.*).(html|htm)$ index.php?opt=product&pid=$1&pbrand=$2&pmodel=$3 [L]
+RewriteRule ^bid_function.html$ models/bid_function.php [L]
+RewriteRule ^([a-zA-Z0-9].+)\.(html|htm)$ index.php?opt=$1 [L]
