@@ -7,7 +7,9 @@ if (!hasPermission($logged, 'access', 'Settings')) {
 	header('Location:permission.html');
 }
 
-$faq_id = $_GET['faq_id'];
+if(isset($_GET['faq_id'])) {
+	$faq_id = $_GET['faq_id'];
+}
 $faqs = getFAQById($faq_id);
 ?>
 <script>

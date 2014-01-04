@@ -1,4 +1,34 @@
 <?php
+if (isset($_POST['db_hostname'])) {
+	$db_hostname = $_POST['db_hostname'];
+} else {
+	$db_hostname = '';
+}
+
+if (isset($_POST['db_username'])) {
+	$db_username = $_POST['db_username'];
+} else {
+	$db_username = '';
+}
+
+if (isset($_POST['db_password'])) {
+	$db_password = $_POST['db_password'];
+} else {
+	$db_password = '';
+}
+
+if (isset($_POST['db_name'])) {
+	$db_name = $_POST['db_name'];
+} else {
+	$db_name = '';
+}
+
+if (isset($_POST['folder'])) {
+	$folder = $_POST['folder'];
+} else {
+	$folder = '';
+}
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$db_hostname = $_POST['db_hostname'];
 	$db_username = $_POST['db_username'];
@@ -36,17 +66,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$filecontent_access = str_replace("RewriteBase /", "RewriteBase /" . $folder . "/", $filecontent_access);;
 		file_put_contents("../.htaccess", $filecontent_access);
 		
-		//$dbconn = mysql_connect($db_hostname, $db_username, $db_password);
-		//mysql_select_db($db_name, $dbconn);
-
-		//$file = '../coin.sql';
-
-		//if($fp = file_get_contents($file)) {
-		//	$var_array = explode(';',$fp);
-		//	foreach($var_array as $value) {
-		//		mysql_query($value.';',$dbconn);
-		//	}
-		//} 
 		echo "<h1>Successfully Install</h1>";
 	} else {
 		$error_db_hostname = $error['db_hostname'];
@@ -80,7 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<tr>
 						<td>Host Name : </td>
 						<td><input type="text" name="db_hostname" value="<?php echo $db_hostname; ?>"  placeholder="Database HostName" />
-						<?php if ($error_db_hostname) { ?>
+						<?php if (isset($error_db_hostname)) { ?>
 							<span class="error"><?php echo $error_db_hostname; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -88,7 +107,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<tr>
 						<td>Databse Username : </td>
 						<td><input type="text" name="db_username" value="<?php echo $db_username; ?>"  placeholder="Database Username" />
-						<?php if ($error_db_username) { ?>
+						<?php if (isset($error_db_username)) { ?>
 							<span class="error"><?php echo $error_db_username; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -101,7 +120,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<tr>
 						<td>Database Name : </td>
 						<td><input type="text" name="db_name" value="<?php echo $db_name; ?>"  placeholder="Database Name" />
-						<?php if ($error_db_name) { ?>
+						<?php if (isset($error_db_name)) { ?>
 							<span class="error"><?php echo $error_db_name; ?></span>
 						<?php } ?></td>
 					</tr>

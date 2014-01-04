@@ -7,10 +7,18 @@ if (!hasPermission($logged, 'access', 'graphics_form')) {
 	header('Location:permission.html');
 }
 
-$graphics_id = $_GET['graphics_id'];
-$info = getGraphicsById($graphics_id);
-$name = $info['name'];
-$image = $info['image'];
+if(isset($_GET['graphics_id'])) {
+	$graphics_id = $_GET['graphics_id'];
+	$info = getGraphicsById($graphics_id);
+	$name = $info['name'];
+	$image = $info['image'];
+}
+
+if (isset($_POST['name'])) {
+	$name = $_POST['username'];
+} else {
+	$name = '';
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$action = $_POST['action'];
@@ -56,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		&nbsp; > &nbsp; 
 		<a href="graphics.html"><?php echo $lang['text_graphics']; ?></a>
 	</div>
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<div class="box">
@@ -83,12 +91,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<?php 
 									$row = 0;
 									$folder = 'data/image/graphics/';
-									if($image != "") { 
-										echo '<div class="image" id="image">
+									if(isset($image)) {
+										if($image != "") { 
+											echo '<div class="image" id="image">
 												<input type="hidden" id="hidden" name="file_image[]" value="' . $image . '" />
 												<img id="thumb" src="../' . $folder . $image .'" " width="100px" height="100px" />
 												<br/><center><a id="remove"">' . $lang['button_remove'] . '</a></center>
 												</div>';
+										}
 									} 
 								?>
 							</div>
@@ -127,7 +137,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						</td>
 					</tr>
 				</table>
-				<?php if($graphics_id) { ?>
+				<?php if(isset($graphics_id)) { ?>
 					<input type="hidden" name="action" value="update" />
 					<input type="hidden" name="graphics_id" value="<?php echo $graphics_id; ?>" />
 				<?php } else { ?>

@@ -145,11 +145,11 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 						</tr>
 					</thead>
 					 <tbody>
-						<?php if ($products) { ?>
+						<?php if (isset($products)) { ?>
 							<?php foreach ($products as $a => $product) { ?>
 								<tr>
 									<td style="text-align: center;">
-										<?php if ($product['selected']) { ?>
+										<?php if (isset($product['selected'])) { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" checked="checked" />
 										<?php } else { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
@@ -164,6 +164,7 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 										<?php
 										$data_image = array(
 											'product_id' 	=> $product['product_id'],
+											'start'			=> 0,
 											'limit'			=> 1
 										);
 										$folder = 'data/image/product/' . $product['product_id'] . '/';

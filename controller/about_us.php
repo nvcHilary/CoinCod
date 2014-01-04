@@ -13,6 +13,8 @@ if($settings) {
 		}
 	}
 }
+
+$title = $lang['head_about_us'];
 ?>
 <h5><?php echo $lang['head_about_us']; ?></h5>
 <article class="auction_container">

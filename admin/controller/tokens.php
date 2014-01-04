@@ -92,11 +92,11 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 						</tr>
 					</thead>
 					<tbody>
-						<?php if ($tokens) { ?>
+						<?php if (isset($tokens)) { ?>
 							<?php foreach ($tokens as $token) { ?>
 								<tr>
 									<td style="text-align: center;">
-										<?php if ($token['selected']) { ?>
+										<?php if (isset($token['selected'])) { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $token['token_id']; ?>" checked="checked" />
 										<?php } else { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $token['token_id']; ?>" />

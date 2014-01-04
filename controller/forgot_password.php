@@ -56,10 +56,12 @@ if(isset($_POST["btnGet"])){
 		$error_warning = $lang['error_email_not_exist'];
 	}
 }
+
+$title = $lang['head_forgot_password'];
 ?>
 <h5><?php echo $lang['head_forgot_password']; ?></h5>
 <article class="auction_container">
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<form action="forgot_password.html" enctype="multipart/form-data" name="myForm" id="myForm" method="post">

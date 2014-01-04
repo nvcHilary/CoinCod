@@ -1,5 +1,7 @@
 <?php
-$logged = $_SESSION['coin_id'];
+if(isset($_SESSION['coin_id'])) {
+	$logged = $_SESSION['coin_id'];
+}
 ?>
 <header id="header">
 	<div id="header_content">
@@ -57,7 +59,7 @@ $logged = $_SESSION['coin_id'];
 					$username = $customer['username'];
 					$token = $customer['token'];
 					$gravatar_image = $customer['email'];
-					//$gravatar_default = "";
+					$gravatar_default = "";
 					$size = 40;
 					$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $gravatar_image ) ) ) . "?d=" . urlencode( $gravatar_default ) . "&s=" . $size;
 				

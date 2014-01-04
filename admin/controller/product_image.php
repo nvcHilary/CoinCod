@@ -7,8 +7,10 @@ if (!hasPermission($logged, 'access', 'product_form')) {
 	header('Location:permission.html');
 }
 
-$product_id = $_GET['product_id'];
-
+if(isset($_GET['product_id'])) {
+	$product_id = $_GET['product_id'];
+}
+	
 if (isset($logged) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$data = array(
 		'product_id' 	=> $product_id
@@ -43,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		&nbsp; > &nbsp; 
 		<a href="product.html"><?php echo $lang['text_product']; ?></a>
 	</div>
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<div class="box">

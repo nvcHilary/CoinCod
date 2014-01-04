@@ -123,11 +123,11 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 						</tr>
 					</thead>
 					 <tbody>
-						<?php if ($customers) { ?>
+						<?php if (isset($customers)) { ?>
 							<?php foreach ($customers as $a => $customer) { ?>
 								<tr>
 									<td style="text-align: center;">
-										<?php if ($customer['selected']) { ?>
+										<?php if (isset($customer['selected'])) { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $customer['customer_id']; ?>" checked="checked" />
 										<?php } else { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $customer['customer_id']; ?>" />

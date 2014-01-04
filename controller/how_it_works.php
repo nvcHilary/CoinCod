@@ -11,6 +11,8 @@ if($settings) {
 		}
 	}
 }
+
+$title = $lang['head_how_it_works'];
 ?>
 <h5><?php echo $lang['head_how_it_works']; ?></h5>
 <article class="auction_container">

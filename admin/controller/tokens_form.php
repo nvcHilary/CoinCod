@@ -7,8 +7,10 @@ if (!hasPermission($logged, 'access', 'tokens_form')) {
 	header('Location:permission.html');
 }
 
-$token_id = $_GET['tokens_id'];
-
+if(isset($_GET['tokens_id'])) {
+	$token_id = $_GET['tokens_id'];
+}
+	
 if (isset($token_id) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$token_info = getTokensById($token_id);
 }

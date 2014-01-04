@@ -88,11 +88,11 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 						</tr>
 					</thead>
 					 <tbody>
-						<?php if ($faqs) { ?>
+						<?php if (isset($faqs)) { ?>
 							<?php foreach ($faqs as $a => $faq) { ?>
 								<tr>
 									<td style="text-align: center;">
-										<?php if ($faq['selected']) { ?>
+										<?php if (isset($faq['selected'])) { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $faq['faq_id']; ?>" checked="checked" />
 										<?php } else { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $faq['faq_id']; ?>" />

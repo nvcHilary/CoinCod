@@ -116,11 +116,11 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 						</tr>
 					</thead>
 					<tbody>
-						<?php if ($user_groups) { ?>
+						<?php if (isset($user_groups)) { ?>
 							<?php foreach ($user_groups as $user_group) { ?>
 								<tr>
 									<td style="text-align: center;">
-										<?php if ($user_group['selected']) { ?>
+										<?php if (isset($user_group['selected'])) { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $user_group['user_group_id']; ?>" checked="checked" />
 										<?php } else { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $user_group['user_group_id']; ?>" />

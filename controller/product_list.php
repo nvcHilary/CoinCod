@@ -40,6 +40,7 @@
 							<?php
 								$data_image = array(
 									'product_id' 	=> $product['product_id'],
+									'start'			=> 0,
 									'limit'			=> 1
 								);
 								$images = getProductImage($data_image);
@@ -100,6 +101,7 @@
 							<?php
 								$data_bidder = array(
 									'productId'	=> $product['product_id'],
+									'start'		=> 0,
 									'limit'		=> 1
 								);
 								$bidders = getHighestBidder($data_bidder);

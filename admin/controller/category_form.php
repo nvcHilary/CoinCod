@@ -7,8 +7,10 @@ if (!hasPermission($logged, 'access', 'category_form')) {
 	header('Location:permission.html');
 }
 
-$category_id = $_GET['category_id'];
-
+if(isset($_GET['category_id'])) {
+	$category_id = $_GET['category_id'];
+}
+	
 if (isset($category_id) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$category_info = getCategoryById($category_id);
 }
@@ -89,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<tr>
 						<td><span class="required">*</span> <?php echo $lang['entry_category_name']; ?></td>
 						<td><input type="text" name="name" value="<?php echo $name; ?>" placeholder="<?php echo $lang['entry_category_name']; ?>" autofocus required>
-						<?php if ($error_name) { ?>
+						<?php if (isset($error_name)) { ?>
 							<span class="error"><?php echo $error_name; ?></span>
 						<?php } ?></td>
 					</tr>

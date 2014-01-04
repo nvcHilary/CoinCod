@@ -5,12 +5,17 @@ $product = getProductById($product_id);
 $product_time = strtotime($product['dateend']) - time();
 $token_needed = $product["bids"];
 
-$data_setting = array();
+$data_setting = array(
+	'group'	=> 'social',
+	'Key'	=> 'fbshare'
+);
 $settings = getSettings($data_setting);
 
-if($settings['key'] == 'fbshare') {
-	$fbshare = $settings['value'];
+foreach($settings as $setting) {
+	$fbshare = $setting['value'];
 }
+
+$title = $product['brand']." ".$product['model'];;
 
 require_once ('models/token_function.php');
 ?>
@@ -45,6 +50,7 @@ poll<?php echo $product_id; ?>();
 						<?php
 						$data_image = array(
 							'product_id' 	=> $product_id,
+							'start'			=> 0,
 							'limit'			=> 1
 						);
 						$images = getProductImage($data_image);
@@ -121,6 +127,7 @@ poll<?php echo $product_id; ?>();
 							<?php
 								$data_bidder = array(
 									'productId'	=> $product_id,
+									'start'		=> 0,
 									'limit'		=> 5
 								);
 								$bidders = getHighestBidder($data_bidder);

@@ -87,6 +87,7 @@ function verifyLoginCustomer($data = array()) {
 
 //login.php + ....
 function getCustomerByEmail($data = array()) {
+	$records = array();
 	$sql = "SELECT id, username, email, status, fcode FROM " . e01 . " WHERE email = '" . $data['email'] . "'";
 	$query = mysql_query($sql);
 	
@@ -103,6 +104,7 @@ function getCustomerByEmail($data = array()) {
 //Front End
 //admin/customer_form.php
 function getCountryCode() {
+	$records = array();
 	$sql = mysql_query("SELECT country_id, name, iso_code_2, iso_code_3 FROM ".e04) or die ("Unable to run query:".mysql_error());
 	$c=0;
 	while ($rows = mysql_fetch_array($sql)) {
@@ -117,6 +119,7 @@ function getCountryCode() {
 
 //admin/customer_form.php
 function getStateCode($country) {
+	$records = array();
 	$sql = mysql_query("SELECT zone_id, name, code FROM " . e05 . " WHERE country_id='" . $country . "'" ) or die ("Unable to run query:".mysql_error());
 	$c=0;
 	while ($rows = mysql_fetch_array($sql)) {
@@ -139,6 +142,7 @@ function getTotalCustomers() {
 
 //admin/customer.php
 function getCustomers($data = array()) {
+	$records = array();
 	$sql = "SELECT a.id, a.username, a.date_added FROM " . e01 . " a LEFT JOIN " . e02 . " b ON a.id = b.customer_id ";
 	
 	$sort_data = array(
@@ -184,6 +188,7 @@ function getCustomers($data = array()) {
 
 //admin/customer_form.php + header.php + bid_function.php
 function getCustomerById($customer_id) {
+	$records = array();
 	$sql = "SELECT a.id, a.username, a.password, a.email, a.token, a.status, a.fcode, b.first_name, b.last_name, b.date_birth, b.gender, b.address1, b.address2, b.city, b.zip, b.country, b.state, b.phone 
 				FROM " . e01 . " a LEFT JOIN " . e02 . " b ON a.id=b.customer_id WHERE a.id = '" . (int)$customer_id . "'";
 	$query = mysql_query($sql);
@@ -448,19 +453,12 @@ function verifyLoginAdmin($data = array()) {
 
 //admin/login.php
 function getUserByUsername($data = array()) {
+	$records = array();
 	$sql = "SELECT id FROM " . e50 . " WHERE username = '" . $data['username'] . "'";
 	$query = mysql_query($sql);
 	
 	$rows = mysql_fetch_array($query);
 	$records["user_id"] = $rows["id"];
-	//$records["group_id"] = $rows["group_id"];
-	//$records["username"] = $rows["username"];
-	//$records["password"] = $rows["password"];
-	//$records["email"] = $rows["email"];
-	//$records["ip"] = $rows["ip"];
-	//$records["status"] = $rows["status"];
-	//$records["creator_id"] = $rows["creator_id"];
-	//$records["date_added"] = $rows["date_added"];
 
 	return $records;
 }
@@ -476,6 +474,7 @@ function getTotalGroups() {
 
 //admin/user_group.php
 function getGroups($data = array()) {
+	$records = array();
 	$sql = "SELECT id, name, permission FROM " . e52;
 	
 	$sort_data = array(
@@ -512,7 +511,6 @@ function getGroups($data = array()) {
 	while ($rows = mysql_fetch_array($query)) {
 		$records[$c]["user_group_id"] = $rows["id"];
 		$records[$c]["name"] = $rows["name"];
-//		$records[$c]["permission"] = $rows["permission"];
 		$c++;
 	}
 
@@ -521,6 +519,7 @@ function getGroups($data = array()) {
 
 //admin/user_group_form.php
 function getGroupById($group_id) {
+	$records = array();
 	$sql = "SELECT id, name, permission FROM " . e52 . " WHERE id = '" . (int)$group_id . "'";
 	$query = mysql_query($sql);
 	
@@ -589,6 +588,7 @@ function getTotalUsers() {
 
 //admin/user.php
 function getUsers($data = array()) {
+	$records = array();
 	$sql = "SELECT a.id AS ID, a.username, a.status, a.group_id, a.date_added, b.id, b.name FROM " . e50 . " a LEFT JOIN " . e52 . " b ON a.group_id = b.id ";
 	
 	$sort_data = array(
@@ -636,6 +636,7 @@ function getUsers($data = array()) {
 
 //admin/user_form.php
 function getUserById($user_id) {
+	$records = array();
 	$sql = "SELECT id, username, password, email, group_id, status FROM " . e50 . " WHERE id = '" . (int)$user_id . "'";
 	$query = mysql_query($sql);
 	
@@ -746,6 +747,7 @@ function getTotalCategory() {
 
 //admin/category.php
 function getCategory($data) {
+	$records = array();
 	$sql = "SELECT id, name FROM " . e06 . " ORDER BY id ASC ";
 	
 	if (isset($data['start']) || isset($data['limit'])) {
@@ -774,6 +776,7 @@ function getCategory($data) {
 
 //admin/category_form.php
 function getCategoryById($category_id) {
+	$records = array();
 	$query = mysql_query("SELECT id, name FROM " . e06 . " a WHERE a.id='" . $category_id . "'");
 	$rows = mysql_fetch_array($query);
 
@@ -836,6 +839,7 @@ function getTotalProducts() {
 
 //admin/product.php + home.php
 function getProducts($data) {
+	$records = array();
 	$sql = "SELECT id, brand, model, auction_price, availability, total_bid, time_end FROM " . e07 ;
 	
 	$sort_data = array(
@@ -885,6 +889,7 @@ function getProducts($data) {
 
 //admin/product_form.php + bid_function.php
 function getProductById($product_id) {
+	$records = array();
 	$query = mysql_query("SELECT id, brand, model, market_price, auction_price, category_id, availability, time_start, time_end, description, total_bid FROM " . e07 . " a WHERE a.id='" . $product_id . "'");
 	$rows = mysql_fetch_array($query);
 
@@ -904,6 +909,7 @@ function getProductById($product_id) {
 
 //admin/product.php + admin.product_image.php + home.php
 function getProductImage($data) {
+	$records = array();
 	$sql = "SELECT id, product_id, image FROM " . e08 . " a WHERE a.product_id='" . $data['product_id'] . "'";
 	
 	if (isset($data['start']) || isset($data['limit'])) {
@@ -1061,6 +1067,7 @@ function insertProductLog($product_id, $info, $old_info, $new_info, $modify_by) 
 
 //admin/social.php + information.php + information_form.php + sql_function.php + security + careers + privacy + terms
 function getSettings($data) {
+	$records = array();
 	$sql = "SELECT id, keyword, value FROM " . e10 . " WHERE grouping = '" . $data['group'] . "'";
 	
 	if(isset($data['Key'])) {
@@ -1081,6 +1088,7 @@ function getSettings($data) {
 
 //admin/information_form.php
 function getSettingsById($information_id) {
+	$records = array();
 	$sql = "SELECT id, keyword FROM " . e10 . " WHERE id = '" . $information_id . "'";
 	
 	$query = mysql_query($sql);
@@ -1154,6 +1162,7 @@ function insertBiddingLog($data) {
 
 //product.php + product_list.php
 function getHighestBidder($data) {
+	$records = array();
 	$sql = "SELECT a.product_id, a.customer_id, a.date_added, b.username FROM " . e11 . " a LEFT JOIN " . e01 . " b ON a.customer_id = b.id WHERE product_id='" . $data['productId'] . "' ORDER BY a.date_added DESC";
 	
 	if (isset($data['start']) || isset($data['limit'])) {
@@ -1190,6 +1199,7 @@ function getTotalFAQ() {
 
 //admin/faq.php + controller/faq.php
 function getFAQs($data) {
+	$records = array();
 	$sql = "SELECT id, question, answer FROM " . e12 . " ORDER BY id ASC ";
 	
 	if (isset($data['start']) || isset($data['limit'])) {
@@ -1219,6 +1229,7 @@ function getFAQs($data) {
 
 //admin/faq_form.php
 function getFAQById($faq_id) {
+	$records = array();
 	$query = mysql_query("SELECT id, question, answer FROM " . e12 . " a WHERE a.id='" . $faq_id . "'");
 	$rows = mysql_fetch_array($query);
 
@@ -1284,6 +1295,7 @@ function getTotalGraphics() {
 
 //admin/graphics.php
 function getGraphics($data) {
+	$records = array();
 	$sql = "SELECT id, name, image FROM " . e13 . " ORDER BY id ASC ";
 	
 	if (isset($data['start']) || isset($data['limit'])) {
@@ -1322,6 +1334,7 @@ function deleteGraphics($graphics_id) {
 
 //admin/graphics_form.php
 function getGraphicsById($graphics_id) {
+	$records = array();
 	$query = mysql_query("SELECT id, name, image FROM " . e13 . " a WHERE a.id='" . $graphics_id . "'");
 	$rows = mysql_fetch_array($query);
 
@@ -1349,9 +1362,6 @@ function editGraphics($data) {
 	return false;
 }
 
-
-
-
 //admin/tokens_form.php
 function insertTokens($data) {
 	$sql = "INSERT INTO " . e14 . " (name, discount, paypal_code, price) VALUES('" . $data['name'] . "', '" . $data['discount'] . "', '" . $data['code'] . "', '" . $data['price'] . "')";
@@ -1371,6 +1381,7 @@ function getTotalToken() {
 
 //admin/tokens.php
 function getTokens($data) {
+	$records = array();
 	$sql = "SELECT id, name, discount, paypal_code, price FROM " . e14 . " ORDER BY id ASC ";
 	
 	if (isset($data['start']) || isset($data['limit'])) {
@@ -1411,6 +1422,7 @@ function deleteToken($tokens_id) {
 
 //admin/tokens_form.php
 function getTokensById($tokens_id) {
+	$records = array();
 	$query = mysql_query("SELECT id, name, discount, paypal_code, price FROM " . e14 . " a WHERE a.id='" . $tokens_id . "'");
 	$rows = mysql_fetch_array($query);
 
@@ -1433,5 +1445,4 @@ function editTokens($data) {
 		return true;
 	return false;
 }
-
 ?>

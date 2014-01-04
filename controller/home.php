@@ -1,5 +1,7 @@
 <?php
-$logged = $_SESSION['coin_id'];
+if(isset($_SESSION['coin_id'])) {
+	$logged = $_SESSION['coin_id'];
+}
 
 if (isset($_SESSION['error_warning'])) {
 	$error_warning = $_SESSION['error_warning'];
@@ -62,6 +64,7 @@ if(isset($_POST["btnReg"])){
 	header("location:register.html");
 }
 
+$title = $lang['head_home'];
 ?>
 <?php if ($error_warning) { ?>
 	<div class="warning"><?php echo $error_warning; ?></div>
@@ -101,6 +104,7 @@ if(isset($_POST["btnReg"])){
 	
 	<?php
 	$data_product = array(
+		'start'	=> 0,
 		'limit'	=> 4	
 	);
 	include_once "product_list.php";

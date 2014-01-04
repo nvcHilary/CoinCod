@@ -7,7 +7,9 @@ if (!hasPermission($logged, 'access', 'user_group_form')) {
 	header('Location:permission.html');
 }
 
-$group_id = $_GET['group_id'];
+if(isset($_GET['group_id'])) {
+	$group_id = $_GET['group_id'];
+}
 
 if (isset($group_id) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$group_info = getGroupById($group_id);
@@ -110,7 +112,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		&nbsp; > &nbsp; 
 		<a href="user_group.html"><?php echo $lang['text_user_group']; ?></a>
 	</div>
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<div class="box">
@@ -131,7 +133,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<tr>
 						<td><span class="required">*</span> <?php echo $lang['entry_group_name']; ?></td>
 						<td><input type="text" name="name" value="<?php echo $name; ?>" placeholder="<?php echo $lang['entry_group_name']; ?>" autofocus required >
-						<?php if ($error_name) { ?>
+						<?php if (isset($error_name)) { ?>
 							<span class="error"><?php echo $error_name; ?></span>
 						<?php  } ?></td>
 					</tr>

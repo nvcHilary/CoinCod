@@ -2,6 +2,7 @@
 session_start();
 require_once "../models/config.php";
 require_once "../models/sql_function.php";
+require_once "../variables/variables.php";
 
 $logged = $_SESSION['coin_id'];
 

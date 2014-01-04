@@ -14,6 +14,8 @@ if($settings) {
 		if($setting['key'] == 'company_maps') {		$Cmaps = $setting['value']; 	}
 	}
 }
+
+$title = $lang['head_location'];
 ?>
 <h5><?php echo $lang['head_location']; ?></h5>
 <article class="auction_container">

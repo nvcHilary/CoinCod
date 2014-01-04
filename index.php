@@ -7,8 +7,10 @@ include_once ('models/sql_function.php');
 include_once ('variables/variables.php');
 require("admin/includes/js/phpmailer/class.phpmailer.php");
 
-$opt = $_GET['opt'];
-
+if(isset($_GET['opt'])) {
+	$opt = $_GET['opt'];
+}
+	
 $files = glob('install/*.php');
 
 foreach ($files as $file) {
@@ -22,7 +24,6 @@ foreach ($files as $file) {
 <html>
 <head>
 	<base href="<?php echo mainPageURL(); ?>">
-	<title><?php echo $title; ?></title>
 	<meta charset="utf-8" />
 	<meta name="description" content="<?php echo $meta_description; ?>" />
 	
@@ -64,6 +65,7 @@ foreach ($files as $file) {
 	
 	<!--footer-->
 	<?php include_once ('includes/footer.php'); ?>
+	<title><?php echo $title; ?></title>
 </body>
 </html>
 <?php ob_end_flush();?>

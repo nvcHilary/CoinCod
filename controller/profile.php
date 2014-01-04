@@ -199,14 +199,16 @@ if(isset($_POST["btnSave"])){
 		$error_phone = $error['phone'];
 	}
 }
+
+$title = $lang['head_user_profile'];
 ?>
 
 <h5><?php echo $lang['head_user_profile']; ?></h5>
 <article class="auction_container">
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
-	<?php if ($success) { ?>
+	<?php if (isset($success)) { ?>
 		<div class="success"><?php echo $success; ?></div>
 	<?php } ?>
 	<div class="registration">
@@ -246,7 +248,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_fname']; ?></td>
 						<td><input type="text" name="firstname" value="<?php echo $fname; ?>" class="text" id="firstname" size="33" maxlength="50" tabindex="1" >
-						<?php if ($error_fname) { ?>
+						<?php if (isset($error_fname)) { ?>
 							<span class="error"><?php echo $error_fname; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -254,7 +256,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_lname']; ?></td>
 						<td><input type="text" name="lastname" value="<?php echo $lname; ?>" class="text" id="lastname" size="33" maxlength="50" tabindex="2" >
-						<?php if ($error_lname) { ?>
+						<?php if (isset($error_lname)) { ?>
 							<span class="error"><?php echo $error_lname; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -262,7 +264,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_dob']; ?></td>
 						<td><input type="text" id="datepicker" name="datepicker" value="<?php echo $dob; ?>" />
-						<?php if ($error_dob) { ?>
+						<?php if (isset($error_dob)) { ?>
 							<span class="error"><?php echo $error_dob; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -283,7 +285,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_add1']; ?></td>
 						<td><input type="text" name="add1" value="<?php echo $add1; ?>" class="text" id="add1" size="33" maxlength="100" tabindex="5" >
-						<?php if ($error_add1) { ?>
+						<?php if (isset($error_add1)) { ?>
 							<span class="error"><?php echo $error_add1; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -296,7 +298,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_city']; ?></td>
 						<td><input type="text" name="city" value="<?php echo $city; ?>" class="text" id="city" size="33" maxlength="100" tabindex="6" >
-						<?php if ($error_city) { ?>
+						<?php if (isset($error_city)) { ?>
 							<span class="error"><?php echo $error_city; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -304,7 +306,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_zip']; ?></td>
 						<td><input type="text" name="zip" value="<?php echo $zip; ?>" class="text" id="zip" size="33" maxlength="100" tabindex="8" >
-						<?php if ($error_zip) { ?>
+						<?php if (isset($error_zip)) { ?>
 							<span class="error"><?php echo $error_zip; ?></span>
 						<?php } ?></td>
 					</tr>
@@ -325,7 +327,7 @@ if(isset($_POST["btnSave"])){
 								}
 							?>
 							</select>
-						<?php if ($error_country) { ?>
+						<?php if (isset($error_country)) { ?>
 							<span class="error"><?php echo $error_country; ?></span>
 						<?php  } ?></td>
 					</tr>
@@ -333,7 +335,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_state']; ?></td>
 						<td><select name="state" id="state" ></select>
-						<?php if ($error_state) { ?>
+						<?php if (isset($error_state)) { ?>
 							<span class="error"><?php echo $error_state; ?></span>
 						<?php  } ?></td>
 					</tr>
@@ -341,7 +343,7 @@ if(isset($_POST["btnSave"])){
 					<tr>
 						<td><?php echo $lang['text_phone']; ?></td>
 						<td><input type="text" name="phone" value="<?php echo $phone; ?>" placeholder="<?php echo $lang['text_phone']; ?>" autofocus>
-						<?php if ($error_phone) { ?>
+						<?php if (isset($error_phone)) { ?>
 							<span class="error"><?php echo $error_phone; ?></span>
 						<?php } ?></td>
 					</tr>
