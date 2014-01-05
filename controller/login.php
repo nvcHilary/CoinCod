@@ -61,6 +61,8 @@ if(isset($_POST["btnLogin"])){
 		$error_email = $error['email'];
 	}
 }
+
+$title = $lang['head_login'];
 ?>
 <h5><?php echo $lang['head_login']; ?></h5>
 <article class="auction_container">
@@ -77,7 +79,7 @@ if(isset($_POST["btnLogin"])){
 			</tr>
 			<tr>
 				<td><input type="text" name="email" value="<?php echo $emails; ?>" class="text" id="email"  placeholder="<?php echo $lang['text_email']; ?>" size="33" maxlength="50" tabindex="10" required >
-				<?php if ($error_email) { ?>
+				<?php if (isset($error_email)) { ?>
 					<span class="error"><?php echo $error_email; ?></span>
 				<?php } ?></td>
 			</tr>

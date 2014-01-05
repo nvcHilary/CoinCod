@@ -1,5 +1,7 @@
 <?php
-$logged = $_SESSION['coin_id'];
+if(isset($_SESSION['coin_id'])) {
+	$logged = $_SESSION['coin_id'];
+}
 ?>
 <header id="header">
 	<div id="header_content">
@@ -45,11 +47,11 @@ $logged = $_SESSION['coin_id'];
 							alert('Timeout!!!Please login to continue browsing the site');
 						</script>";
 				} else { 
-//					echo '<div id="search"> 
-//						<form action="'.mainPageURL().'" enctype="multipart/form-data" name="searchForm" id="myForm" method="GET">
-//							<input type="text" class="search_input" name="search" placeholder="Enter Search..." value="" />
-//						</form>
-//					</div>';
+					echo '<div id="search"> 
+						<form action="'.mainPageURL().'" enctype="multipart/form-data" name="searchForm" id="myForm" method="GET">
+							<input type="text" class="search_input" name="search" placeholder="Enter Search..." value="" />
+						</form>
+					</div>';
 								
 					$_SESSION['start_reset'] = time();
 					$_SESSION['expire'] = $_SESSION['start_reset'] + (30 * 60) ;
@@ -57,7 +59,7 @@ $logged = $_SESSION['coin_id'];
 					$username = $customer['username'];
 					$token = $customer['token'];
 					$gravatar_image = $customer['email'];
-					//$gravatar_default = "";
+					$gravatar_default = "";
 					$size = 40;
 					$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $gravatar_image ) ) ) . "?d=" . urlencode( $gravatar_default ) . "&s=" . $size;
 				

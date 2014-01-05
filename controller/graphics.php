@@ -1,6 +1,8 @@
 <?php
 $data = array();
 $graphics = getGraphics($data);
+
+$title = $lang['head_graphics'];
 ?>
 <h5><?php echo $lang['head_graphics']; ?></h5>
 <article class="auction_container">

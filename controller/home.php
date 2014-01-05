@@ -1,5 +1,11 @@
 <?php
-$logged = $_SESSION['coin_id'];
+if(isset($_SESSION['coin_id'])) {
+	$logged = $_SESSION['coin_id'];
+}
+
+if(isset($_GET['search'])) {
+	$search = $_GET['search'];
+}
 
 if (isset($_SESSION['error_warning'])) {
 	$error_warning = $_SESSION['error_warning'];
@@ -62,6 +68,7 @@ if(isset($_POST["btnReg"])){
 	header("location:register.html");
 }
 
+$title = $lang['head_home'];
 ?>
 <?php if ($error_warning) { ?>
 	<div class="warning"><?php echo $error_warning; ?></div>
@@ -72,6 +79,12 @@ if(isset($_POST["btnReg"])){
 <?php if(isset($logged)) {
 	$data_product = array(	
 	);
+	if(isset($search)) {
+		$data_product_search = array(
+			'search'	=> $search
+		);
+		$data_product = array_merge($data_product, $data_product_search);
+	}
 	include_once "product_list.php";
 } else { ?>
 	<section id="before_login">
@@ -101,6 +114,7 @@ if(isset($_POST["btnReg"])){
 	
 	<?php
 	$data_product = array(
+		'start'	=> 0,
 		'limit'	=> 4	
 	);
 	include_once "product_list.php";

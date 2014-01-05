@@ -3,9 +3,11 @@ if(isset($logged)){
 	header("location:".mainPageURL());
 }
 
-$encry_email = $_GET['email'];
-$encry_code = $_GET['code'];
-
+if( (isset($_GET['email'])) && (isset($_GET['code'])) ) {
+	$encry_email = $_GET['email'];
+	$encry_code = $_GET['code'];
+}
+	
 $email = urldecode(base64_decode($encry_email));
 $code = substr($encry_code, 0, 10);
 
@@ -80,10 +82,12 @@ if(isset($_POST["btnReset"])){
 		$error_confirm = $error['confirm'];
 	}
 }
+
+$title = $lang['head_reset_password'];
 ?>
 <h5><?php echo $lang['head_reset_password']; ?></h5>
 <article class="auction_container">
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<form action="resetpassword/<?php echo $encry_email; ?>/<?php echo $encry_code; ?>.html" enctype="multipart/form-data" name="myForm" id="myForm" method="post">
@@ -96,7 +100,7 @@ if(isset($_POST["btnReset"])){
 					<td>
 						<div class="value"><?php echo $lang['text_password']; ?></div>
 						<input type="password" id="password" name="password" class="text" value="<?php echo $password; ?>" required/>
-						<?php if ($error_password) { ?>
+						<?php if (isset($error_password)) { ?>
 							<span class="error"><?php echo $error_password; ?></span>
 						<?php } ?>
 					</td>
@@ -105,7 +109,7 @@ if(isset($_POST["btnReset"])){
 					<td>
 						<div class="value"><?php echo $lang['text_confirm']; ?></div>
 						<input type="password" id="confirm" name="confirm" class="text" value="<?php echo $confirm; ?>" required/>
-						<?php if ($error_confirm) { ?>
+						<?php if (isset($error_confirm)) { ?>
 							<span class="error"><?php echo $error_confirm; ?></span>
 						<?php } ?>
 					</td>

@@ -7,8 +7,10 @@ if (!hasPermission($logged, 'access', 'customer_form')) {
 	header('Location:permission.html');
 }
 
-$customer_id = $_GET['customer_id'];
-
+if(isset($_GET['customer_id'])) { 
+	$customer_id = $_GET['customer_id'];
+}
+	
 if (isset($customer_id) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$customer_info = getCustomerById($customer_id);
 }
@@ -320,7 +322,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		&nbsp; > &nbsp; 
 		<a href="customer.html"><?php echo $lang['text_customer']; ?></a>
 	</div>
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<div class="box">
@@ -346,35 +348,35 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_username']; ?></td>
 							<td><input type="text" name="username" value="<?php echo $username; ?>" placeholder="<?php echo $lang['entry_username']; ?>" autofocus required>
-							<?php if ($error_username) { ?>
+							<?php if (isset($error_username)) { ?>
 								<span class="error"><?php echo $error_username; ?></span>
 							<?php } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_email']; ?></td>
 							<td><input type="text" name="email" value="<?php echo $email; ?>" placeholder="<?php echo $lang['entry_email']; ?>" autofocus required>
-							<?php if ($error_email) { ?>
+							<?php if (isset($error_email)) { ?>
 								<span class="error"><?php echo $error_email; ?></span>
 							<?php } ?></td>
 						</tr>
 						<tr>
 							<td><?php if(!isset($customer_id)) { ?><span class="required">*</span> <?php } ?> <?php echo $lang['entry_password']; ?></td>
 							<td><input type="password" name="password" value="<?php echo $password; ?>" placeholder="<?php echo $lang['entry_password']; ?>" autofocus required>
-							<?php if ($error_password) { ?>
+							<?php if (isset($error_password)) { ?>
 								<span class="error"><?php echo $error_password; ?></span>
 							<?php  } ?></td>
 						</tr>
 						<tr>
 							<td><?php if(!isset($customer_id)) { ?><span class="required">*</span> <?php } ?> <?php echo $lang['entry_confirm']; ?></td>
 							<td><input type="password" name="confirm" value="<?php echo $confirm; ?>" placeholder="<?php echo $lang['entry_confirm']; ?>" autofocus required>
-							<?php if ($error_confirm) { ?>
+							<?php if (isset($error_confirm)) { ?>
 								<span class="error"><?php echo $error_confirm; ?></span>
 							<?php  } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_token']; ?></td>
 							<td><input type="text" name="token" value="<?php echo $token; ?>" placeholder="<?php echo $lang['entry_token']; ?>" autofocus required>
-							<?php if ($error_token) { ?>
+							<?php if (isset($error_token)) { ?>
 								<span class="error"><?php echo $error_toekn; ?></span>
 							<?php } ?></td>
 						</tr>
@@ -397,21 +399,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_fname']; ?></td>
 							<td><input type="text" name="fname" value="<?php echo $fname; ?>" placeholder="<?php echo $lang['entry_fname']; ?>" autofocus required>
-							<?php if ($error_fname) { ?>
+							<?php if (isset($error_fname)) { ?>
 								<span class="error"><?php echo $error_fname; ?></span>
 							<?php } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_lname']; ?></td>
 							<td><input type="text" name="lname" value="<?php echo $lname; ?>" placeholder="<?php echo $lang['entry_lname']; ?>" autofocus required>
-							<?php if ($error_lname) { ?>
+							<?php if (isset($error_lname)) { ?>
 								<span class="error"><?php echo $error_lname; ?></span>
 							<?php } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_dob']; ?></td>
 							<td><input type="text" id="datepicker" name="datepicker" value="<?php echo $dob; ?>" placeholder="<?php echo $lang['entry_dob']; ?>" required/>
-							<?php if ($error_dob) { ?>
+							<?php if (isset($error_dob)) { ?>
 								<span class="error"><?php echo $error_dob; ?></span>
 							<?php } ?></td>
 						</tr>
@@ -430,7 +432,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_add1']; ?></td>
 							<td><input type="text" name="add1" value="<?php echo $add1; ?>" placeholder="<?php echo $lang['entry_add1']; ?>" autofocus required>
-							<?php if ($error_add1) { ?>
+							<?php if (isset($error_add1)) { ?>
 								<span class="error"><?php echo $error_add1; ?></span>
 							<?php } ?></td>
 						</tr>
@@ -441,14 +443,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_city']; ?></td>
 							<td><input type="text" name="city" value="<?php echo $city; ?>" placeholder="<?php echo $lang['entry_city']; ?>" autofocus required>
-							<?php if ($error_city) { ?>
+							<?php if (isset($error_city)) { ?>
 								<span class="error"><?php echo $error_city; ?></span>
 							<?php } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_zip']; ?></td>
 							<td><input type="text" name="zip" value="<?php echo $zip; ?>" placeholder="<?php echo $lang['entry_zip']; ?>" autofocus required>
-							<?php if ($error_zip) { ?>
+							<?php if (isset($error_zip)) { ?>
 								<span class="error"><?php echo $error_zip; ?></span>
 							<?php } ?></td>
 						</tr>
@@ -468,7 +470,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 									}
 								?>
 								</select>
-							<?php if ($error_country) { ?>
+							<?php if (isset($error_country)) { ?>
 								<span class="error"><?php echo $error_country; ?></span>
 							<?php  } ?></td>
 						</tr>
@@ -476,14 +478,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_state']; ?></td>
 							<td><select name="state" id="state" ></select>
-							<?php if ($error_state) { ?>
+							<?php if (isset($error_state)) { ?>
 								<span class="error"><?php echo $error_state; ?></span>
 							<?php  } ?></td>
 						</tr>
 						<tr>
 							<td><span class="required">*</span> <?php echo $lang['entry_phone']; ?></td>
 							<td><input type="text" name="phone" value="<?php echo $phone; ?>" placeholder="<?php echo $lang['entry_phone']; ?>" autofocus required>
-							<?php if ($error_phone) { ?>
+							<?php if (isset($error_phone)) { ?>
 								<span class="error"><?php echo $error_phone; ?></span>
 							<?php } ?></td>
 						</tr>

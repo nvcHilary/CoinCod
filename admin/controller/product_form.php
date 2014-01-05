@@ -7,8 +7,10 @@ if (!hasPermission($logged, 'access', 'product_form')) {
 	header('Location:permission.html');
 }
 
-$product_id = $_GET['product_id'];
-
+if(isset($_GET['product_id'])) {
+	$product_id = $_GET['product_id'];
+}
+	
 if (isset($product_id) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$product_info = getProductById($product_id);
 }

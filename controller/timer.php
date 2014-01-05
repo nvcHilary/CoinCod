@@ -11,8 +11,10 @@
 		$days = date("d", $time - (8 * 60 * 60)) - 1;
 		$time = date("H:i:s", $time - (8 * 60 * 60));
 	}
-	if($days != 0) {
-		echo $days." days ";
+	if(isset($days)) {
+		if($days != 0) {
+			echo $days." days ";
+		}
 	}
 	echo $time;
 

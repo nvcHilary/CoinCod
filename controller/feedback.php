@@ -98,6 +98,8 @@ if(isset($_POST["btnSubmit"])){
 		$error_comment = $error['comment'];
 	}
 }
+
+$title = $lang['head_feedback'];
 ?>
 <h5><?php echo $lang['head_feedback']; ?></h5>
 <article class="auction_container">
@@ -119,8 +121,8 @@ if(isset($_POST["btnSubmit"])){
 						<label for="form_name"><?php echo $lang['entry_name']; ?></label>
 					</dt>
 					<dd>
-						<input id="form_name" name="form_name" required="true" value="" type="text">
-						<?php if ($error_name) { ?>
+						<input id="form_name" name="form_name" required="true" value="" type="text" placeholder="<?php echo $lang['entry_name']; ?>">
+						<?php if (isset($error_name)) { ?>
 							<span class="error"><?php echo $error_name; ?></span>
 						<?php } ?>
 					</dd>
@@ -131,8 +133,8 @@ if(isset($_POST["btnSubmit"])){
 						<label for="form_email"><?php echo $lang['entry_email']; ?></label>
 					</dt>
 					<dd>
-						<input id="form_email" name="form_email" required="true" value="" type="email">
-						<?php if ($error_email) { ?>
+						<input id="form_email" name="form_email" required="true" value="" type="email" placeholder="<?php echo $lang['entry_email']; ?>">
+						<?php if (isset($error_email)) { ?>
 							<span class="error"><?php echo $error_email; ?></span>
 						<?php } ?>
 					</dd>
@@ -143,8 +145,8 @@ if(isset($_POST["btnSubmit"])){
 						<label for="form_subject"><?php echo $lang['entry_subject']; ?></label>
 					</dt>
 					<dd>
-						<input id="form_subject" name="form_subject" required="true" type="text">
-						<?php if ($error_subject) { ?>
+						<input id="form_subject" name="form_subject" required="true" type="text" placeholder="<?php echo $lang['entry_subject']; ?>">
+						<?php if (isset($error_subject)) { ?>
 							<span class="error"><?php echo $error_subject; ?></span>
 						<?php } ?>
 					</dd>
@@ -159,7 +161,7 @@ if(isset($_POST["btnSubmit"])){
 					</dt>
 					<dd>
 						<textarea id="form_comments" name="form_comments" placeholder="Please write your feedback here. We will reply your feedback as soon as possible." required="true"></textarea>
-						<?php if ($error_comment) { ?>
+						<?php if (isset($error_comment)) { ?>
 							<span class="error"><?php echo $error_comment; ?></span>
 						<?php } ?>
 					</dd>

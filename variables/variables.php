@@ -117,6 +117,7 @@ $lang['text_retail_price']	= 'Retail Price';
 $lang['button_bid_end']		= 'Bid Ended';
 
 //controller/about_us.php + how_it_works.php + careers.php + faq.php + security + terms + privacy + resetpassword + feedback + site_status.php + location.php + graphics + buy_tokens
+$lang['head_home']			= 'Home';
 $lang['head_about_us']		= 'About Us';
 $lang['head_contact_us']	= 'Contact Us';
 $lang['head_how_it_works']	= 'How It Works';

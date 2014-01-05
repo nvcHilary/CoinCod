@@ -1,16 +1,18 @@
 <?php
-$logged = $_SESSION['coin_user_id'];
+if(isset($_SESSION['coin_user_id'])) { 
+	$logged = $_SESSION['coin_user_id'];
+}
 ?>
 <div id="container">
 	<div id="header">
 		<div class="div1">
 			<div class="div2"><img src="includes/images/logo.png" title="administrator" onclick="location = ''" /></div>
-			<?php if ($logged) { ?>
+			<?php if (isset($logged)) { ?>
 				<div class="div3"><img src="includes/images/lock.png" alt="" style="position: relative; top: 3px;" />&nbsp;<?php echo $logged; ?></div>
 			<?php } ?>
 		</div>
 		
-		<?php if ($logged) { ?>
+		<?php if (isset($logged)) { ?>
 		<div id="menu">
 			<ul class="left" style="display: block;">
 				<?php if ((hasPermission($logged, 'access', 'user_group')) || (hasPermission($logged, 'access', 'user')) || (hasPermission($logged, 'access', 'customer')) ){ ?>

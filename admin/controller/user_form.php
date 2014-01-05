@@ -7,8 +7,10 @@ if (!hasPermission($logged, 'access', 'user_form')) {
 	header('Location:permission.html');
 }
 
-$user_id = $_GET['user_id'];
-
+if(isset($_GET['user_id'])) {
+	$user_id = $_GET['user_id'];
+}
+	
 if (isset($user_id) && ($_SERVER['REQUEST_METHOD'] != 'POST')) {
 	$user_info = getUserById($user_id);
 }
@@ -155,7 +157,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		&nbsp; > &nbsp; 
 		<a href="user.html"><?php echo $lang['text_user']; ?></a>
 	</div>
-	<?php if ($error_warning) { ?>
+	<?php if (isset($error_warning)) { ?>
 		<div class="warning"><?php echo $error_warning; ?></div>
 	<?php } ?>
 	<div class="box">
@@ -176,28 +178,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<tr>
 						<td><span class="required">*</span> <?php echo $lang['entry_username']; ?></td>
 						<td><input type="text" name="username" value="<?php echo $username; ?>" placeholder="<?php echo $lang['entry_username']; ?>" size="50" autofocus required>
-						<?php if ($error_username) { ?>
+						<?php if (isset($error_username)) { ?>
 							<span class="error"><?php echo $error_username; ?></span>
 						<?php } ?></td>
 					</tr>
 					<tr>
 						<td><span class="required">*</span> <?php echo $lang['entry_email']; ?></td>
 						<td><input type="text" name="email" value="<?php echo $email; ?>" placeholder="<?php echo $lang['entry_email']; ?>" size="50" autofocus required>
-						<?php if ($error_email) { ?>
+						<?php if (isset($error_email)) { ?>
 							<span class="error"><?php echo $error_email; ?></span>
 						<?php } ?></td>
 					</tr>
 					<tr>
 						<td><?php if(!isset($user_id)) { ?><span class="required">*</span> <?php } ?> <?php echo $lang['entry_password']; ?></td>
 						<td><input type="password" name="password" value="<?php echo $password; ?>"  placeholder="<?php echo $lang['entry_password']; ?>" size="50" autofocus />
-						<?php if ($error_password) { ?>
+						<?php if (isset($error_password)) { ?>
 							<span class="error"><?php echo $error_password; ?></span>
 						<?php  } ?></td>
 					</tr>
 					<tr>
 						<td><?php if(!isset($user_id)) { ?><span class="required">*</span> <?php } ?> <?php echo $lang['entry_confirm']; ?></td>
 						<td><input type="password" name="confirm" value="<?php echo $confirm; ?>" placeholder="<?php echo $lang['entry_confirm']; ?>" size="50" autofocus />
-						<?php if ($error_confirm) { ?>
+						<?php if (isset($error_confirm)) { ?>
 							<span class="error"><?php echo $error_confirm; ?></span>
 						<?php  } ?></td>
 					</tr>
@@ -213,7 +215,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<?php } ?>
 							<?php } ?>
 						</select>
-						<?php if ($error_user_group) { ?>
+						<?php if (isset($error_user_group)) { ?>
 							<span class="error"><?php echo $error_user_group; ?></span>
 						<?php  } ?></td>
 					</tr>

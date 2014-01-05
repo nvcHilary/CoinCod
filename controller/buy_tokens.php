@@ -1,6 +1,8 @@
 <?php
 $data = array();
 $tokens = getTokens($data);
+
+$title = $lang['head_buy_tokens'];
 ?>
 <h5><?php echo $lang['head_buy_tokens']; ?></h5>
 <article class="auction_container">

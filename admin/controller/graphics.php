@@ -89,11 +89,11 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 						</tr>
 					</thead>
 					 <tbody>
-						<?php if ($graphics) { ?>
+						<?php if (isset($graphics)) { ?>
 							<?php foreach ($graphics as $a => $graphic) { ?>
 								<tr>
 									<td style="text-align: center;">
-										<?php if ($graphic['selected']) { ?>
+										<?php if (isset($graphic['selected'])) { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $graphic['graphics_id']; ?>" checked="checked" />
 										<?php } else { ?>
 											<input type="checkbox" name="selected[]" value="<?php echo $graphic['graphics_id']; ?>" />
@@ -104,6 +104,7 @@ if( ($_SERVER['REQUEST_METHOD'] == 'POST') && (isset($_POST['selected'])) ){
 										<?php
 										$data_image = array(
 											'graphics_id' 	=> $graphic['graphics_id'],
+											'start'			=> 0,
 											'limit'			=> 1
 										);
 										$folder = 'data/image/graphics/';
